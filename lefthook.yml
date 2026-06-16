@@ -13,6 +13,11 @@ commit-msg:
 pre-commit:
   parallel: false
   commands:
+    format:
+      # 差分の C++ ファイルを clang-format で整形し、整形結果を再 stage する。
+      glob: "*.{cpp,hpp,tpp,h}"
+      run: bash scripts/format.sh {staged_files}
+      stage_fixed: true
     build:
       # 差分のあった cppNN/exNN/ を 42 の採点フラグでビルドして弾く。
       glob: "cpp*/ex*/*.{cpp,hpp,tpp,h}"
