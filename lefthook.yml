@@ -1,0 +1,9 @@
+# lefthook 設定。
+# インストール: lefthook install
+# 各フックの実体は scripts/ 配下のスクリプト。
+
+commit-msg:
+  commands:
+    conventional-commits:
+      # {1} には commit-msg フックに渡される引数（コミットメッセージファイルのパス）が入る。
+      run: bash scripts/commit-msg.sh {1}
