@@ -21,6 +21,9 @@
             clang
             gnumake
 
+            # Formatting: clang-tools provides clang-format.
+            clang-tools
+
             # Git hooks
             lefthook
           ];

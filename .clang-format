@@ -1,0 +1,6 @@
+# clang-format 設定。
+# 42 CPP はコーディングスタイル強制なし（Goodbye Norminette）のため、
+# format は採点要件ではなく「自分が読みやすく開発するため」の任意整備。
+# 広く使われ設定が最小で済む LLVM をベーススタイルにする。
+---
+BasedOnStyle: LLVM
