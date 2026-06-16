@@ -7,3 +7,13 @@ commit-msg:
     conventional-commits:
       # {1} には commit-msg フックに渡される引数（コミットメッセージファイルのパス）が入る。
       run: bash scripts/commit-msg.sh {1}
+
+# pre-commit にはビルド / format / grep / lint のチェックを順次追加していく。
+# 各チェックの実体は scripts/ 配下に切り出し、CI からも同じものを呼べるようにする。
+pre-commit:
+  parallel: false
+  commands:
+    guard:
+      # 土台が発火することを確認するための最小チェック。
+      # 個別チェックを追加したらこの guard は削除してよい。
+      run: bash scripts/pre-commit-guard.sh
