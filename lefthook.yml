@@ -22,3 +22,7 @@ pre-commit:
       # 差分のあった cppNN/exNN/ を 42 の採点フラグでビルドして弾く。
       glob: "cpp*/ex*/*.{cpp,hpp,tpp,h}"
       run: bash scripts/check-build.sh {staged_files}
+    lint:
+      # cppcheck / clang-tidy でコンパイラが見逃すバグを検出して弾く。
+      glob: "cpp*/**/*.cpp"
+      run: bash scripts/lint.sh {staged_files}
