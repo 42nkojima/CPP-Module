@@ -13,7 +13,7 @@ commit-msg:
 pre-commit:
   parallel: false
   commands:
-    guard:
-      # 土台が発火することを確認するための最小チェック。
-      # 個別チェックを追加したらこの guard は削除してよい。
-      run: bash scripts/pre-commit-guard.sh
+    build:
+      # 差分のあった cppNN/exNN/ を 42 の採点フラグでビルドして弾く。
+      glob: "cpp*/ex*/*.{cpp,hpp,tpp,h}"
+      run: bash scripts/check-build.sh {staged_files}
