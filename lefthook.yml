@@ -18,6 +18,10 @@ pre-commit:
       glob: "*.{cpp,hpp,tpp,h}"
       run: bash scripts/format.sh {staged_files}
       stage_fixed: true
+    forbidden:
+      # 課題の禁止事項（using namespace / friend / *printf / *alloc / free / STL）を検出して弾く。
+      glob: "cpp*/**/*.{cpp,hpp,tpp,h}"
+      run: bash scripts/check-forbidden.sh {staged_files}
     build:
       # 差分のあった cppNN/exNN/ を 42 の採点フラグでビルドして弾く。
       glob: "cpp*/ex*/*.{cpp,hpp,tpp,h}"
