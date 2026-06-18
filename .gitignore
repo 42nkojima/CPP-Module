@@ -1,5 +1,9 @@
 **/en.subject.pdf
 
+# cpp
+a.out
+*.o
+
 # nix
 .direnv
 !.envrc
