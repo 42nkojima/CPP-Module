@@ -60,6 +60,8 @@ if ! cppcheck \
 fi
 
 echo "▶ clang-tidy"
+# clang-tidy は警告を検出しても終了コード 0 を返すため、--warnings-as-errors='*'
+# を付けないと指摘があってもコミットが通ってしまう。確実に弾くため有効化する。
 # clang-tidy はコンパイルDBが無いので "--" 以降にコンパイル引数を渡す。
 # Nix の devShell では標準ヘッダ（libc++ / clang builtin / SDK）の場所が
 # 通常の場所と違うため、環境から導出して明示的に渡す。値が取れない環境
@@ -84,7 +86,7 @@ if [ -n "${SDKROOT:-}" ]; then
 	tidy_args+=(-isysroot "$SDKROOT")
 fi
 
-if ! clang-tidy "${sources[@]}" -- "${tidy_args[@]}"; then
+if ! clang-tidy --warnings-as-errors='*' "${sources[@]}" -- "${tidy_args[@]}"; then
 	echo "✖ clang-tidy が問題を検出しました。" >&2
 	status=1
 fi
