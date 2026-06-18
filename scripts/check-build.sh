@@ -1,57 +1,41 @@
 #!/usr/bin/env bash
 #
-# ビルドチェック: 差分のあった cppNN/exNN/ を 42 の採点フラグでビルドする。
-#
-# 42 の採点はコンパイル必須（-Wall -Wextra -Werror、-std=c++98 でも通ること）。
-# 壊れたコードをコミットしないよう、コミット前に弾く。
-#
-# 対象は「ステージされたファイルが属する cppNN/exNN/ ディレクトリ」だけに絞り、
-# 全モジュールを毎回ビルドして遅くなるのを避ける。
-#
-# 使い方: scripts/check-build.sh <path...>
-#   lefthook の {staged_files} から対象ファイルを受け取る。
-#
-# Makefile があれば make、無ければ exNN 配下の *.cpp を直接コンパイルする。
+# 差分のあった cppNN/exNN/ を 42 の採点フラグでビルドして弾く。
+# 使い方: scripts/check-build.sh <path...>  (lefthook の {staged_files})
 
 set -euo pipefail
 
-# 42 の採点に合わせたコンパイラとフラグ。Makefile が無い ex の直接ビルドにも使う。
 CXX="c++"
 CXXFLAGS="-Wall -Wextra -Werror -std=c++98"
 
-# 引数で渡されたファイルパスから cppNN/exNN ディレクトリを抽出して一意化する。
+# 全モジュールの再ビルドを避けるため、対象ファイルが属する exNN だけに絞る。
 modules=()
 for f in "$@"; do
-	# 例: cpp00/ex01/main.cpp -> cpp00/ex01
 	if [[ "$f" =~ ^(cpp[0-9]{2}/ex[0-9]{2})/ ]]; then
 		modules+=("${BASH_REMATCH[1]}")
 	fi
 done
 
 if [ "${#modules[@]}" -eq 0 ]; then
-	# 対象の演習ディレクトリに差分なし。何もせず通す。
 	exit 0
 fi
 
-# 重複を除去する。
 mapfile -t modules < <(printf '%s\n' "${modules[@]}" | sort -u)
 
 status=0
 for dir in "${modules[@]}"; do
 	if [ ! -d "$dir" ]; then
-		# ディレクトリごと削除された差分などはスキップ。
 		continue
 	fi
 
 	echo "▶ build: $dir"
 	if [ -f "$dir/Makefile" ]; then
-		# Makefile があれば素の make に任せる（提出物と同じ経路）。
+		# Makefile があれば提出物と同じ経路で make に任せる。
 		if ! make -C "$dir"; then
 			echo "✖ build failed: $dir (make)" >&2
 			status=1
 		fi
 	else
-		# Makefile が無ければ exNN 配下の *.cpp を直接コンパイルして確認する。
 		mapfile -t sources < <(find "$dir" -maxdepth 1 -name '*.cpp')
 		if [ "${#sources[@]}" -eq 0 ]; then
 			echo "  (no .cpp / Makefile; skip)"
