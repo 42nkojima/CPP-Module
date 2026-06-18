@@ -1,0 +1,10 @@
+# clang-tidy 設定。
+# bugprone / 可読性 / 命名系チェックを有効化する。
+# modernize-* は「C++11 を使え」と勧めてくるが 42 CPP は c++98 縛りのため無効化する。
+Checks: >
+  bugprone-*,
+  readability-*,
+  -modernize-*,
+  -readability-magic-numbers,
+  -readability-identifier-length
+WarningsAsErrors: ''
