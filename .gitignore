@@ -1,2 +1,5 @@
 **/en.subject.pdf
-.direnv/
+
+# nix
+.direnv
+!.envrc
