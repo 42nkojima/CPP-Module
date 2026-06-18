@@ -1,6 +1,6 @@
 # lefthook 設定。
 # インストール: lefthook install
-# 各フックの実体は scripts/ 配下のスクリプト。
+# 単純なフックは run に直書きし、固有ロジックのあるものだけ scripts/ に切り出す。
 
 commit-msg:
   commands:
@@ -8,21 +8,22 @@ commit-msg:
       # {1} には commit-msg フックに渡される引数（コミットメッセージファイルのパス）が入る。
       run: bash scripts/commit-msg.sh {1}
 
-# pre-commit にはビルド / format / grep / lint のチェックを順次追加していく。
-# 各チェックの実体は scripts/ 配下に切り出し、CI からも同じものを呼べるようにする。
+# pre-commit で format / build / lint を順に走らせる。
+# ディレクトリ抽出など固有ロジックのある build だけ scripts/ に切り出す。
 pre-commit:
   parallel: false
   commands:
     format:
       # 差分の C++ ファイルを clang-format で整形し、整形結果を再 stage する。
       glob: "*.{cpp,hpp,tpp,h}"
-      run: bash scripts/format.sh {staged_files}
+      run: clang-format -i {staged_files}
       stage_fixed: true
     build:
       # 差分のあった cppNN/exNN/ を 42 の採点フラグでビルドして弾く。
       glob: "cpp*/ex*/*.{cpp,hpp,tpp,h}"
       run: bash scripts/check-build.sh {staged_files}
     lint:
-      # cppcheck / clang-tidy でコンパイラが見逃すバグを検出して弾く。
+      # cppcheck でコンパイラ（-Wall -Wextra）が見逃すバグ（メモリリーク・
+      # 未初期化メンバ・delete/delete[] の取り違え等）を検出して弾く。
       glob: "cpp*/**/*.cpp"
-      run: bash scripts/lint.sh {staged_files}
+      run: cppcheck --std=c++98 --enable=warning,performance,portability --inline-suppr --error-exitcode=1 --quiet {staged_files}

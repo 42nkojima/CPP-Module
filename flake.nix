@@ -21,10 +21,10 @@
             clang
             gnumake
 
-            # Formatting / linting: clang-tools provides clang-format and clang-tidy.
+            # Formatting: clang-tools provides clang-format.
             clang-tools
 
-            # Static analysis
+            # Static analysis (bug detection the compiler misses)
             cppcheck
 
             # Git hooks
