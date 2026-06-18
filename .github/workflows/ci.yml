@@ -1,0 +1,43 @@
+# CI: pre-commit と同じ format / build / lint を flake の devShell 内で走らせる。
+# pre-commit は --no-verify でバイパスできるため、push/PR では CI で再チェックする。
+# 対象は差分ではなく追跡中の全 C++ ファイル。各スクリプトが対象を自前で絞り込む。
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: cachix/install-nix-action@v27
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      # 追跡中の C++ ファイル一覧を ci.files に集める。
+      - name: Collect C++ files
+        id: files
+        run: |
+          files="$(git ls-files '*.cpp' '*.hpp' '*.tpp' '*.h')"
+          {
+            echo 'list<<EOF'
+            echo "$files"
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: format (check)
+        if: steps.files.outputs.list != ''
+        run: nix develop --command bash scripts/format.sh --check ${{ steps.files.outputs.list }}
+
+      - name: build
+        if: steps.files.outputs.list != ''
+        run: nix develop --command bash scripts/check-build.sh ${{ steps.files.outputs.list }}
+
+      - name: lint
+        if: steps.files.outputs.list != ''
+        run: nix develop --command bash scripts/lint.sh ${{ steps.files.outputs.list }}
