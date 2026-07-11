@@ -14,7 +14,7 @@ static bool promptNonEmpty(const std::string &label, std::string &out) {
     if (!out.empty()) {
       return true;
     }
-    std::cout << "This field cna't be empty." << std::endl;
+    std::cout << "This field can't be empty." << std::endl;
   }
 }
 
@@ -22,7 +22,7 @@ static bool doAdd(PhoneBook &phoneBook) {
   Contact contact;
   std::string value;
 
-  if (!promptNonEmpty("Frist name", value))
+  if (!promptNonEmpty("First name", value))
     return false;
   contact.setFirstName(value);
   if (!promptNonEmpty("Last name", value))
@@ -39,7 +39,7 @@ static bool doAdd(PhoneBook &phoneBook) {
   contact.setDarkestSecret(value);
 
   phoneBook.addContact(contact);
-  std::cout << "Contact ssaved." << std::endl;
+  std::cout << "Contact saved." << std::endl;
   return true;
 }
 
