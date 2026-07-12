@@ -4,6 +4,9 @@
 a.out
 *.o
 
+# macos
+.DS_Store
+
 # nix
 .direnv
 !.envrc
