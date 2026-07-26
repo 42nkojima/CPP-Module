@@ -12,11 +12,11 @@ class Contact {
   std::string darkestSecret_;
 
  public:
-  void SetFirstName(const std::string& value);
-  void SetLastName(const std::string& value);
-  void SetNickname(const std::string& value);
-  void SetPhoneNumber(const std::string& value);
-  void SetDarkestSecret(const std::string& value);
+  void set_first_name(const std::string& value);
+  void set_last_name(const std::string& value);
+  void set_nickname(const std::string& value);
+  void set_phone_number(const std::string& value);
+  void set_darkest_secret(const std::string& value);
 
   bool IsValid() const;
   std::string DetailText() const;

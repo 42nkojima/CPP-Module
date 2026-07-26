@@ -23,15 +23,15 @@ static bool DoAdd(PhoneBook& phoneBook) {
   std::string value;
 
   if (!PromptNonEmpty("First name", value)) return false;
-  contact.SetFirstName(value);
+  contact.set_first_name(value);
   if (!PromptNonEmpty("Last name", value)) return false;
-  contact.SetLastName(value);
+  contact.set_last_name(value);
   if (!PromptNonEmpty("Nickname", value)) return false;
-  contact.SetNickname(value);
+  contact.set_nickname(value);
   if (!PromptNonEmpty("Phone number", value)) return false;
-  contact.SetPhoneNumber(value);
+  contact.set_phone_number(value);
   if (!PromptNonEmpty("Darkest secret", value)) return false;
-  contact.SetDarkestSecret(value);
+  contact.set_darkest_secret(value);
 
   phoneBook.AddContact(contact);
   std::cout << "Contact saved." << std::endl;

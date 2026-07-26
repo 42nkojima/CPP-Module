@@ -4,11 +4,13 @@
 #include <ios>
 #include <sstream>
 
-void Contact::SetFirstName(const std::string& value) { firstName_ = value; }
-void Contact::SetLastName(const std::string& value) { lastName_ = value; }
-void Contact::SetNickname(const std::string& value) { nickname_ = value; }
-void Contact::SetPhoneNumber(const std::string& value) { phoneNumber_ = value; }
-void Contact::SetDarkestSecret(const std::string& value) {
+void Contact::set_first_name(const std::string& value) { firstName_ = value; }
+void Contact::set_last_name(const std::string& value) { lastName_ = value; }
+void Contact::set_nickname(const std::string& value) { nickname_ = value; }
+void Contact::set_phone_number(const std::string& value) {
+  phoneNumber_ = value;
+}
+void Contact::set_darkest_secret(const std::string& value) {
   darkestSecret_ = value;
 }
 
