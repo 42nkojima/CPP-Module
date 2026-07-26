@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <ios>
 #include <sstream>
+#include <string>
 
 void Contact::set_first_name(const std::string& value) { firstName_ = value; }
 void Contact::set_last_name(const std::string& value) { lastName_ = value; }
@@ -29,6 +30,12 @@ std::string Contact::DetailText() const {
   return oss.str();
 }
 
+std::string Contact::FirstNameColumn() const {
+  return FormatColumn(firstName_);
+}
+std::string Contact::LastNameColumn() const { return FormatColumn(lastName_); }
+std::string Contact::NicknameColumn() const { return FormatColumn(nickname_); }
+
 std::string Contact::FormatColumn(const std::string& value) {
   std::ostringstream oss;
   if (value.length() > 10) {
@@ -38,9 +45,3 @@ std::string Contact::FormatColumn(const std::string& value) {
   }
   return oss.str();
 }
-
-std::string Contact::FirstNameColumn() const {
-  return FormatColumn(firstName_);
-}
-std::string Contact::LastNameColumn() const { return FormatColumn(lastName_); }
-std::string Contact::NicknameColumn() const { return FormatColumn(nickname_); }
