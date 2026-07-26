@@ -5,7 +5,7 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
-static bool promptNonEmpty(const std::string &label, std::string &out) {
+static bool promptNonEmpty(const std::string& label, std::string& out) {
   while (true) {
     std::cout << label << ": ";
     if (!std::getline(std::cin, out)) {
@@ -18,24 +18,19 @@ static bool promptNonEmpty(const std::string &label, std::string &out) {
   }
 }
 
-static bool doAdd(PhoneBook &phoneBook) {
+static bool doAdd(PhoneBook& phoneBook) {
   Contact contact;
   std::string value;
 
-  if (!promptNonEmpty("First name", value))
-    return false;
+  if (!promptNonEmpty("First name", value)) return false;
   contact.setFirstName(value);
-  if (!promptNonEmpty("Last name", value))
-    return false;
+  if (!promptNonEmpty("Last name", value)) return false;
   contact.setLastName(value);
-  if (!promptNonEmpty("Nickname", value))
-    return false;
+  if (!promptNonEmpty("Nickname", value)) return false;
   contact.setNickname(value);
-  if (!promptNonEmpty("Phone number", value))
-    return false;
+  if (!promptNonEmpty("Phone number", value)) return false;
   contact.setPhoneNumber(value);
-  if (!promptNonEmpty("Darkest secret", value))
-    return false;
+  if (!promptNonEmpty("Darkest secret", value)) return false;
   contact.setDarkestSecret(value);
 
   phoneBook.addContact(contact);
@@ -43,12 +38,12 @@ static bool doAdd(PhoneBook &phoneBook) {
   return true;
 }
 
-static bool parseIndex(const std::string &input, int &out) {
+static bool parseIndex(const std::string& input, int& out) {
   std::istringstream iss(input);
   return (iss >> out) && iss.eof();
 }
 
-static bool doSearch(const PhoneBook &phoneBook) {
+static bool doSearch(const PhoneBook& phoneBook) {
   std::cout << phoneBook.searchListText();
   std::cout << "Index: ";
 
@@ -72,15 +67,11 @@ int main() {
 
   while (true) {
     std::cout << "Enter command (ADD, SEARCH, EXIT): ";
-    if (!std::getline(std::cin, command))
-      break;
+    if (!std::getline(std::cin, command)) break;
 
-    if (command == "EXIT")
-      break;
-    if (command == "ADD" && !doAdd(phoneBook))
-      break;
-    if (command == "SEARCH" && !doSearch(phoneBook))
-      break;
+    if (command == "EXIT") break;
+    if (command == "ADD" && !doAdd(phoneBook)) break;
+    if (command == "SEARCH" && !doSearch(phoneBook)) break;
   }
   return 0;
 }

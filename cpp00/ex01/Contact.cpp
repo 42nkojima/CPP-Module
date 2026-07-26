@@ -4,11 +4,11 @@
 #include <ios>
 #include <sstream>
 
-void Contact::setFirstName(const std::string &value) { firstName = value; }
-void Contact::setLastName(const std::string &value) { lastName = value; }
-void Contact::setNickname(const std::string &value) { nickname = value; }
-void Contact::setPhoneNumber(const std::string &value) { phoneNumber = value; }
-void Contact::setDarkestSecret(const std::string &value) {
+void Contact::setFirstName(const std::string& value) { firstName = value; }
+void Contact::setLastName(const std::string& value) { lastName = value; }
+void Contact::setNickname(const std::string& value) { nickname = value; }
+void Contact::setPhoneNumber(const std::string& value) { phoneNumber = value; }
+void Contact::setDarkestSecret(const std::string& value) {
   darkestSecret = value;
 }
 
@@ -27,7 +27,7 @@ std::string Contact::detailText() const {
   return oss.str();
 }
 
-std::string Contact::formatColumn(const std::string &value) {
+std::string Contact::formatColumn(const std::string& value) {
   std::ostringstream oss;
   if (value.length() > 10) {
     oss << value.substr(0, 9) << ".";

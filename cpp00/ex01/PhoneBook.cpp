@@ -9,7 +9,7 @@ int PhoneBook::displayCount() const {
   return count < MAX_CONTACTS ? count : MAX_CONTACTS;
 }
 
-void PhoneBook::addContact(const Contact &contact) {
+void PhoneBook::addContact(const Contact& contact) {
   if (!contact.isValid()) {
     return;
   }
