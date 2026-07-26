@@ -6,20 +6,20 @@
 #include "Contact.hpp"
 
 class PhoneBook {
-private:
-  static const int MAX_CONTACTS = 8;
+ private:
+  static const int kMaxContacts = 8;
 
-  Contact contacts[MAX_CONTACTS];
-  int count;
+  Contact contacts_[kMaxContacts];
+  int count_;
 
-  int displayCount() const;
+  int DisplayCount() const;
 
-public:
+ public:
   PhoneBook();
-  void addContact(const Contact &contact);
-  std::string searchListText() const;
-  bool hasContact(int index) const;
-  std::string contactDetailText(int index) const;
+  void AddContact(const Contact& contact);
+  std::string SearchListText() const;
+  bool HasContact(int index) const;
+  std::string ContactDetailText(int index) const;
 };
 
 #endif
