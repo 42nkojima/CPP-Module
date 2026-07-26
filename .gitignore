@@ -3,6 +3,7 @@
 # cpp
 a.out
 *.o
+obj/
 
 # macos
 .DS_Store
