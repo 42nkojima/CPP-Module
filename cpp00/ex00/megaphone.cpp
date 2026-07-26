@@ -1,7 +1,7 @@
 #include <cctype>
 #include <iostream>
 
-static void to_uppercase(std::string& str) {
+static void ToUppercase(std::string& str) {
   for (size_t i = 0; i < str.length(); i++) {
     str[i] = std::toupper(static_cast<unsigned char>(str[i]));
   }
@@ -15,7 +15,7 @@ int main(int ac, char** av) {
 
   for (int i = 1; i < ac; i++) {
     std::string str = av[i];
-    to_uppercase(str);
+    ToUppercase(str);
     std::cout << str;
   }
   std::cout << std::endl;

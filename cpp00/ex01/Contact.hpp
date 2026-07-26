@@ -5,26 +5,26 @@
 
 class Contact {
  private:
-  std::string firstName;
-  std::string lastName;
-  std::string nickname;
-  std::string phoneNumber;
-  std::string darkestSecret;
+  std::string firstName_;
+  std::string lastName_;
+  std::string nickname_;
+  std::string phoneNumber_;
+  std::string darkestSecret_;
 
  public:
-  void setFirstName(const std::string& value);
-  void setLastName(const std::string& value);
-  void setNickname(const std::string& value);
-  void setPhoneNumber(const std::string& value);
-  void setDarkestSecret(const std::string& value);
+  void SetFirstName(const std::string& value);
+  void SetLastName(const std::string& value);
+  void SetNickname(const std::string& value);
+  void SetPhoneNumber(const std::string& value);
+  void SetDarkestSecret(const std::string& value);
 
-  bool isValid() const;
-  std::string detailText() const;
-  std::string firstNameColumn() const;
-  std::string lastNameColumn() const;
-  std::string nicknameColumn() const;
+  bool IsValid() const;
+  std::string DetailText() const;
+  std::string FirstNameColumn() const;
+  std::string LastNameColumn() const;
+  std::string NicknameColumn() const;
 
-  static std::string formatColumn(const std::string& value);
+  static std::string FormatColumn(const std::string& value);
 };
 
 #endif

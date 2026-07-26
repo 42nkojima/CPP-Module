@@ -4,30 +4,30 @@
 #include <ios>
 #include <sstream>
 
-void Contact::setFirstName(const std::string& value) { firstName = value; }
-void Contact::setLastName(const std::string& value) { lastName = value; }
-void Contact::setNickname(const std::string& value) { nickname = value; }
-void Contact::setPhoneNumber(const std::string& value) { phoneNumber = value; }
-void Contact::setDarkestSecret(const std::string& value) {
-  darkestSecret = value;
+void Contact::SetFirstName(const std::string& value) { firstName_ = value; }
+void Contact::SetLastName(const std::string& value) { lastName_ = value; }
+void Contact::SetNickname(const std::string& value) { nickname_ = value; }
+void Contact::SetPhoneNumber(const std::string& value) { phoneNumber_ = value; }
+void Contact::SetDarkestSecret(const std::string& value) {
+  darkestSecret_ = value;
 }
 
-bool Contact::isValid() const {
-  return !firstName.empty() && !lastName.empty() && !nickname.empty() &&
-         !phoneNumber.empty() && !darkestSecret.empty();
+bool Contact::IsValid() const {
+  return !firstName_.empty() && !lastName_.empty() && !nickname_.empty() &&
+         !phoneNumber_.empty() && !darkestSecret_.empty();
 }
 
-std::string Contact::detailText() const {
+std::string Contact::DetailText() const {
   std::ostringstream oss;
-  oss << "First name: " << firstName << "\n"
-      << "Last name: " << lastName << "\n"
-      << "Nickname: " << nickname << "\n"
-      << "Phone number: " << phoneNumber << "\n"
-      << "Darkest secret: " << darkestSecret << "\n";
+  oss << "First name: " << firstName_ << "\n"
+      << "Last name: " << lastName_ << "\n"
+      << "Nickname: " << nickname_ << "\n"
+      << "Phone number: " << phoneNumber_ << "\n"
+      << "Darkest secret: " << darkestSecret_ << "\n";
   return oss.str();
 }
 
-std::string Contact::formatColumn(const std::string& value) {
+std::string Contact::FormatColumn(const std::string& value) {
   std::ostringstream oss;
   if (value.length() > 10) {
     oss << value.substr(0, 9) << ".";
@@ -37,6 +37,8 @@ std::string Contact::formatColumn(const std::string& value) {
   return oss.str();
 }
 
-std::string Contact::firstNameColumn() const { return formatColumn(firstName); }
-std::string Contact::lastNameColumn() const { return formatColumn(lastName); }
-std::string Contact::nicknameColumn() const { return formatColumn(nickname); }
+std::string Contact::FirstNameColumn() const {
+  return FormatColumn(firstName_);
+}
+std::string Contact::LastNameColumn() const { return FormatColumn(lastName_); }
+std::string Contact::NicknameColumn() const { return FormatColumn(nickname_); }

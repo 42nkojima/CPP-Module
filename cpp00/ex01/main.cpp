@@ -5,7 +5,7 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
-static bool promptNonEmpty(const std::string& label, std::string& out) {
+static bool PromptNonEmpty(const std::string& label, std::string& out) {
   while (true) {
     std::cout << label << ": ";
     if (!std::getline(std::cin, out)) {
@@ -18,33 +18,33 @@ static bool promptNonEmpty(const std::string& label, std::string& out) {
   }
 }
 
-static bool doAdd(PhoneBook& phoneBook) {
+static bool DoAdd(PhoneBook& phoneBook) {
   Contact contact;
   std::string value;
 
-  if (!promptNonEmpty("First name", value)) return false;
-  contact.setFirstName(value);
-  if (!promptNonEmpty("Last name", value)) return false;
-  contact.setLastName(value);
-  if (!promptNonEmpty("Nickname", value)) return false;
-  contact.setNickname(value);
-  if (!promptNonEmpty("Phone number", value)) return false;
-  contact.setPhoneNumber(value);
-  if (!promptNonEmpty("Darkest secret", value)) return false;
-  contact.setDarkestSecret(value);
+  if (!PromptNonEmpty("First name", value)) return false;
+  contact.SetFirstName(value);
+  if (!PromptNonEmpty("Last name", value)) return false;
+  contact.SetLastName(value);
+  if (!PromptNonEmpty("Nickname", value)) return false;
+  contact.SetNickname(value);
+  if (!PromptNonEmpty("Phone number", value)) return false;
+  contact.SetPhoneNumber(value);
+  if (!PromptNonEmpty("Darkest secret", value)) return false;
+  contact.SetDarkestSecret(value);
 
-  phoneBook.addContact(contact);
+  phoneBook.AddContact(contact);
   std::cout << "Contact saved." << std::endl;
   return true;
 }
 
-static bool parseIndex(const std::string& input, int& out) {
+static bool ParseIndex(const std::string& input, int& out) {
   std::istringstream iss(input);
   return (iss >> out) && iss.eof();
 }
 
-static bool doSearch(const PhoneBook& phoneBook) {
-  std::cout << phoneBook.searchListText();
+static bool DoSearch(const PhoneBook& phoneBook) {
+  std::cout << phoneBook.SearchListText();
   std::cout << "Index: ";
 
   std::string input;
@@ -53,11 +53,11 @@ static bool doSearch(const PhoneBook& phoneBook) {
   }
 
   int index;
-  if (!parseIndex(input, index) || !phoneBook.hasContact(index)) {
+  if (!ParseIndex(input, index) || !phoneBook.HasContact(index)) {
     std::cout << "Invalid index." << std::endl;
     return true;
   }
-  std::cout << phoneBook.contactDetailText(index);
+  std::cout << phoneBook.ContactDetailText(index);
   return true;
 }
 
@@ -70,8 +70,8 @@ int main() {
     if (!std::getline(std::cin, command)) break;
 
     if (command == "EXIT") break;
-    if (command == "ADD" && !doAdd(phoneBook)) break;
-    if (command == "SEARCH" && !doSearch(phoneBook)) break;
+    if (command == "ADD" && !DoAdd(phoneBook)) break;
+    if (command == "SEARCH" && !DoSearch(phoneBook)) break;
   }
   return 0;
 }

@@ -3,37 +3,38 @@
 #include <sstream>
 #include <string>
 
-PhoneBook::PhoneBook() : count(0) {}
+PhoneBook::PhoneBook() : count_(0) {}
 
-int PhoneBook::displayCount() const {
-  return count < MAX_CONTACTS ? count : MAX_CONTACTS;
+int PhoneBook::DisplayCount() const {
+  return count_ < kMaxContacts ? count_ : kMaxContacts;
 }
 
-void PhoneBook::addContact(const Contact& contact) {
-  if (!contact.isValid()) {
+void PhoneBook::AddContact(const Contact& contact) {
+  if (!contact.IsValid()) {
     return;
   }
 
-  contacts[count % MAX_CONTACTS] = contact;
-  count++;
+  contacts_[count_ % kMaxContacts] = contact;
+  count_++;
 }
 
-std::string PhoneBook::searchListText() const {
+std::string PhoneBook::SearchListText() const {
   std::ostringstream oss;
-  for (int i = 0; i < displayCount(); i++) {
+  for (int i = 0; i < DisplayCount(); i++) {
     std::ostringstream indexText;
     indexText << i;
-    oss << Contact::formatColumn(indexText.str()) << "|"
-        << contacts[i].firstNameColumn() << "|" << contacts[i].lastNameColumn()
-        << "|" << contacts[i].nicknameColumn() << "\n";
+    oss << Contact::FormatColumn(indexText.str()) << "|"
+        << contacts_[i].FirstNameColumn() << "|"
+        << contacts_[i].LastNameColumn() << "|" << contacts_[i].NicknameColumn()
+        << "\n";
   }
   return oss.str();
 }
 
-bool PhoneBook::hasContact(int index) const {
-  return 0 <= index && index < displayCount();
+bool PhoneBook::HasContact(int index) const {
+  return 0 <= index && index < DisplayCount();
 }
 
-std::string PhoneBook::contactDetailText(int index) const {
-  return contacts[index].detailText();
+std::string PhoneBook::ContactDetailText(int index) const {
+  return contacts_[index].DetailText();
 }
