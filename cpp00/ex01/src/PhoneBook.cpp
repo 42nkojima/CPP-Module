@@ -5,10 +5,6 @@
 
 PhoneBook::PhoneBook() : count_(0) {}
 
-int PhoneBook::DisplayCount() const {
-  return count_ < kMaxContacts ? count_ : kMaxContacts;
-}
-
 void PhoneBook::AddContact(const Contact& contact) {
   if (!contact.IsValid()) {
     return;
@@ -37,4 +33,8 @@ bool PhoneBook::HasContact(int index) const {
 
 std::string PhoneBook::ContactDetailText(int index) const {
   return contacts_[index].DetailText();
+}
+
+int PhoneBook::DisplayCount() const {
+  return count_ < kMaxContacts ? count_ : kMaxContacts;
 }
