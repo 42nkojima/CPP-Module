@@ -4,13 +4,6 @@
 #include <string>
 
 class Contact {
- private:
-  std::string firstName_;
-  std::string lastName_;
-  std::string nickname_;
-  std::string phoneNumber_;
-  std::string darkestSecret_;
-
  public:
   void set_first_name(const std::string& value);
   void set_last_name(const std::string& value);
@@ -25,6 +18,13 @@ class Contact {
   std::string NicknameColumn() const;
 
   static std::string FormatColumn(const std::string& value);
+
+ private:
+  std::string firstName_;
+  std::string lastName_;
+  std::string nickname_;
+  std::string phoneNumber_;
+  std::string darkestSecret_;
 };
 
 #endif
