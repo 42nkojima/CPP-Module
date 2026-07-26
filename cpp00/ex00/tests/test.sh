@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# どこから実行してもバイナリを見つけられるよう、スクリプト位置を基準に解決する。
+BIN="$(cd "$(dirname "$0")/.." && pwd)/megaphone"
+
 # 色付け (FD先がターミナルでなければ無効化)
 if [ -t 1 ]; then
   GREEN=$(printf '\033[32m'); RED=$(printf '\033[31m')
@@ -9,8 +12,8 @@ else
 fi
 
 # バイナリが「存在して実行可能である」かをチェック
-if [ ! -x ./megaphone ]; then
-  printf '%s./megaphone not found — run `make` first%s\n' "$RED" "$RESET"
+if [ ! -x "$BIN" ]; then
+  printf '%smegaphone not found — run `make` first%s\n' "$RED" "$RESET"
   exit 1
 fi
 
@@ -26,7 +29,7 @@ check() {
   for a in "$@"; do args="$args<$a>"; done
   [ -z "$args" ] && args="(no args)"
 
-  actual="$(./megaphone "$@")"
+  actual="$("$BIN" "$@")"
 
   if [ "$actual" = "$expected" ]; then
     pass=$((pass + 1))
