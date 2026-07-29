@@ -3,7 +3,9 @@
 #include "Zombie.hpp"
 
 Zombie* zombieHorde(int N, const std::string& name) {
-  if (N <= 0) return NULL;
+  if (N <= 0) {
+    return NULL;
+  }
 
   Zombie* horde = new Zombie[N];
 

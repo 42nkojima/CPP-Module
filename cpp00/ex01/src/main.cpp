@@ -22,15 +22,25 @@ static bool DoAdd(PhoneBook& phoneBook) {
   Contact contact;
   std::string value;
 
-  if (!PromptNonEmpty("First name", value)) return false;
+  if (!PromptNonEmpty("First name", value)) {
+    return false;
+  }
   contact.set_first_name(value);
-  if (!PromptNonEmpty("Last name", value)) return false;
+  if (!PromptNonEmpty("Last name", value)) {
+    return false;
+  }
   contact.set_last_name(value);
-  if (!PromptNonEmpty("Nickname", value)) return false;
+  if (!PromptNonEmpty("Nickname", value)) {
+    return false;
+  }
   contact.set_nickname(value);
-  if (!PromptNonEmpty("Phone number", value)) return false;
+  if (!PromptNonEmpty("Phone number", value)) {
+    return false;
+  }
   contact.set_phone_number(value);
-  if (!PromptNonEmpty("Darkest secret", value)) return false;
+  if (!PromptNonEmpty("Darkest secret", value)) {
+    return false;
+  }
   contact.set_darkest_secret(value);
 
   phoneBook.AddContact(contact);
@@ -67,11 +77,19 @@ int main() {
 
   while (true) {
     std::cout << "Enter command (ADD, SEARCH, EXIT): ";
-    if (!std::getline(std::cin, command)) break;
+    if (!std::getline(std::cin, command)) {
+      break;
+    }
 
-    if (command == "EXIT") break;
-    if (command == "ADD" && !DoAdd(phoneBook)) break;
-    if (command == "SEARCH" && !DoSearch(phoneBook)) break;
+    if (command == "EXIT") {
+      break;
+    }
+    if (command == "ADD" && !DoAdd(phoneBook)) {
+      break;
+    }
+    if (command == "SEARCH" && !DoSearch(phoneBook)) {
+      break;
+    }
   }
   return 0;
 }
