@@ -5,6 +5,12 @@ a.out
 *.o
 obj/
 
+# cpp binaries (Makefile NAME per exercise)
+account
+megaphone
+phonebook
+zombie
+
 # macos
 .DS_Store
 
