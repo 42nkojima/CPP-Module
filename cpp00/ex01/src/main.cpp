@@ -14,7 +14,7 @@ static bool PromptNonEmpty(const std::string& label, std::string& out) {
     if (!out.empty()) {
       return true;
     }
-    std::cout << "This field can't be empty." << std::endl;
+    std::cout << "This field can't be empty.\n";
   }
 }
 
@@ -44,7 +44,7 @@ static bool DoAdd(PhoneBook& phoneBook) {
   contact.set_darkest_secret(value);
 
   phoneBook.AddContact(contact);
-  std::cout << "Contact saved." << std::endl;
+  std::cout << "Contact saved.\n";
   return true;
 }
 
@@ -64,7 +64,7 @@ static bool DoSearch(const PhoneBook& phoneBook) {
 
   int index;
   if (!ParseIndex(input, index) || !phoneBook.HasContact(index)) {
-    std::cout << "Invalid index." << std::endl;
+    std::cout << "Invalid index.\n";
     return true;
   }
   std::cout << phoneBook.ContactDetailText(index);

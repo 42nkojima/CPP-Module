@@ -9,7 +9,7 @@ static void ToUppercase(std::string& str) {
 
 int main(int ac, char** av) {
   if (ac == 1) {
-    std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+    std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
     return 0;
   }
 
@@ -18,7 +18,7 @@ int main(int ac, char** av) {
     ToUppercase(str);
     std::cout << str;
   }
-  std::cout << std::endl;
+  std::cout << "\n";
 
   return 0;
 }
