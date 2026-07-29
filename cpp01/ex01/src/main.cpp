@@ -15,7 +15,9 @@ int main() {
   const int emptySize = 0;
   std::cout << "[N = " << emptySize << "] expect NULL, nothing allocated\n";
   Zombie* empty = zombieHorde(emptySize, "Empty");
-  if (empty == NULL) std::cout << "got NULL\n";
+  if (empty == NULL) {
+    std::cout << "got NULL\n";
+  }
 
   return 0;
 }

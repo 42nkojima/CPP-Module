@@ -1,4 +1,5 @@
 #include "Account.hpp"
+
 #include <ctime>
 #include <iostream>
 
@@ -20,7 +21,9 @@ void Account::displayAccountsInfos(void) {
 }
 
 Account::Account(int initial_deposit)
-    : _accountIndex(_nbAccounts), _amount(initial_deposit), _nbDeposits(0),
+    : _accountIndex(_nbAccounts),
+      _amount(initial_deposit),
+      _nbDeposits(0),
       _nbWithdrawals(0) {
   _nbAccounts++;
   _totalAmount += initial_deposit;
