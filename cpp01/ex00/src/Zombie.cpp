@@ -5,8 +5,8 @@
 
 Zombie::Zombie(const std::string& name) : name_(name) {}
 
-Zombie::~Zombie(void) { std::cout << name_ << ": died..." << std::endl; }
+Zombie::~Zombie() { std::cout << name_ << ": died...\n"; }
 
-void Zombie::announce(void) const {
-  std::cout << name_ << ": BraiiiiiiinnnzzzZ..." << std::endl;
+void Zombie::announce() const {
+  std::cout << name_ << ": BraiiiiiiinnnzzzZ...\n";
 }

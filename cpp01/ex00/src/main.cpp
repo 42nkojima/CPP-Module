@@ -1,6 +1,6 @@
 #include "Zombie.hpp"
 
-int main(void) {
+int main() {
   Zombie* z = newZombie("Heap");
   z->announce();
 
