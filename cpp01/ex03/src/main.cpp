@@ -25,11 +25,7 @@ int main() {
   }
   {
     // 異常系: HumanBが武器を所持しないまま attack() する
-    Weapon club = Weapon("crude spiked club");
-
     HumanB jim("Jim");
-    jim.attack();
-    club.setType("some other type of club");
     jim.attack();
   }
 
