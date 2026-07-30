@@ -3,7 +3,7 @@
     "editor.formatOnSave": true,
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
-    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+    "editor.defaultFormatter": "xaver.clang-format",
     "editor.inlayHints.enabled": "off"
   }
 }
