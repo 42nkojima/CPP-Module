@@ -49,32 +49,59 @@ check_status() {
   report "exit $expected  $args" "$expected" "$?"
 }
 
-# --- 引数の個数 -------------------------------------------------------------
+# 異常系・正常系の両方で使い回す入力ファイル。
+printf 'hello world\n' > "$WORK/input.txt"
+
+# ====================
+# 異常系 (すべて exit 1)
+# ====================
+
+# --- 引数の個数 ---
 
 check_status 1
 check_status 1 file
 check_status 1 file s1
 check_status 1 file s1 s2 extra
 
-# --- 入力ファイルが開けない -------------------------------------------------
+# --- s1 が空 ---
+
+check_status 1 "$WORK/input.txt" "" b
+
+# --- 入力ファイルが開けない ---
 
 check_status 1 "$WORK/does-not-exist" a b
 
-# ディレクトリは open できてしまう環境があるため、読み取り不可のファイルで確認する。
+# ディレクトリは open できてしまう環境があるため
 printf 'secret\n' > "$WORK/noperm.txt"
 chmod 000 "$WORK/noperm.txt"
-# root は権限を無視できるので、その場合はこのケースを飛ばす。
+# root は権限を無視できるので
 if [ ! -r "$WORK/noperm.txt" ]; then
   check_status 1 "$WORK/noperm.txt" a b
 fi
 chmod 644 "$WORK/noperm.txt"
 
-# --- 正常系 -----------------------------------------------------------------
+# ===============
+# 正常系 (exit 0)
+# ===============
 
-printf 'hello world\n' > "$WORK/input.txt"
 check_status 0 "$WORK/input.txt" hello hi
 
+# todo: .replace の中身を検証するヘルパーを足す
+#   1. $BIN <file> <s1> <s2> を実行する
+#   2. <file>.replace を読む
+#   3. 期待値と比べて report に渡す (check_status と同じ形)
+#
+# 足したいケース:
+#   - 複数回出現            banana / an -> X   => bXXa
+#   - 0回出現 (置換されない) hello world / zzz  => そのまま
+#   - 連続出現              aaa / a -> b       => bbb
+#   - s2 が空 (削除になる)   aaa / a -> ""      => ""
+#   - s1 == s2 (無限ループしないこと)
+#   - 元ファイルが変更されていないこと
+
+# ======
 # サマリ
+# =====
 total=$((pass + fail))
 printf '\n%d tests: %s%d passed%s' "$total" "$GREEN" "$pass" "$RESET"
 [ "$fail" -gt 0 ] && printf ', %s%d failed%s' "$RED" "$fail" "$RESET"
