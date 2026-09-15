@@ -4,7 +4,9 @@ Replacer::Replacer(const std::string& from, const std::string& to)
     : from_(from), to_(to) {}
 
 std::string Replacer::Apply(const std::string& content) const {
-  if (from_.empty()) return content;
+  if (from_.empty()) {
+    return content;
+  }
 
   std::string result;
   std::string::size_type start = 0, pos;
