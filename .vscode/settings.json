@@ -5,5 +5,7 @@
     "files.insertFinalNewline": true,
     "editor.defaultFormatter": "xaver.clang-format",
     "editor.inlayHints.enabled": "off"
-  }
+  },
+  "files.autoSave": "afterDelay",
+  "editor.formatOnSave": true
 }
