@@ -29,7 +29,7 @@ void Harl::complainFilter(const std::string& level) {
     case ERROR:
       error();
       break;
-    default:
+    case UNKNOWN:
       std::cout << "[ Probably complaining about insignificant problems ]\n";
   }
 }
