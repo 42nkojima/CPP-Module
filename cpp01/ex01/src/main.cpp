@@ -3,18 +3,18 @@
 #include "Zombie.hpp"
 
 int main() {
-  const int hordeSize = 5;
-  std::cout << "[N = " << hordeSize << "] expect " << hordeSize
+  const int kHordeSize = 5;
+  std::cout << "[N = " << kHordeSize << "] expect " << kHordeSize
             << " announces, then as many destructor messages\n";
-  Zombie* horde = zombieHorde(hordeSize, "Horde");
-  for (int i = 0; i < hordeSize; i++) {
+  Zombie* horde = zombieHorde(kHordeSize, "Horde");
+  for (int i = 0; i < kHordeSize; i++) {
     horde[i].announce();
   }
   delete[] horde;
 
-  const int emptySize = 0;
-  std::cout << "[N = " << emptySize << "] expect NULL, nothing allocated\n";
-  Zombie* empty = zombieHorde(emptySize, "Empty");
+  const int kEmptySize = 0;
+  std::cout << "[N = " << kEmptySize << "] expect NULL, nothing allocated\n";
+  Zombie* empty = zombieHorde(kEmptySize, "Empty");
   if (empty == NULL) {
     std::cout << "got NULL\n";
   }

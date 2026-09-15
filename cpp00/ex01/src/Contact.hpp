@@ -20,11 +20,11 @@ class Contact {
   static std::string FormatColumn(const std::string& value);
 
  private:
-  std::string firstName_;
-  std::string lastName_;
+  std::string first_name_;
+  std::string last_name_;
   std::string nickname_;
-  std::string phoneNumber_;
-  std::string darkestSecret_;
+  std::string phone_number_;
+  std::string darkest_secret_;
 };
 
 #endif
