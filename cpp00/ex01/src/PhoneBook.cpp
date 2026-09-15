@@ -17,9 +17,9 @@ void PhoneBook::AddContact(const Contact& contact) {
 std::string PhoneBook::SearchListText() const {
   std::ostringstream oss;
   for (int i = 0; i < DisplayCount(); i++) {
-    std::ostringstream indexText;
-    indexText << i;
-    oss << Contact::FormatColumn(indexText.str()) << "|"
+    std::ostringstream index_text;
+    index_text << i;
+    oss << Contact::FormatColumn(index_text.str()) << "|"
         << contacts_[i].FirstNameColumn() << "|"
         << contacts_[i].LastNameColumn() << "|" << contacts_[i].NicknameColumn()
         << "\n";
