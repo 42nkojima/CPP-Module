@@ -40,6 +40,30 @@ float Fixed::toFloat() const {
 
 int Fixed::toInt() const { return value_ >> kFractionalBits; }
 
+bool Fixed::operator>(const Fixed& copy) const {
+  return (value_ > copy.value_);
+}
+
+bool Fixed::operator<(const Fixed& copy) const {
+  return (value_ < copy.value_);
+}
+
+bool Fixed::operator>=(const Fixed& copy) const {
+  return (value_ >= copy.value_);
+}
+
+bool Fixed::operator<=(const Fixed& copy) const {
+  return (value_ <= copy.value_);
+}
+
+bool Fixed::operator==(const Fixed& copy) const {
+  return (value_ == copy.value_);
+}
+
+bool Fixed::operator!=(const Fixed& copy) const {
+  return (value_ != copy.value_);
+}
+
 std::ostream& operator<<(std::ostream& out, const Fixed& right) {
   out << right.toFloat();
   return out;
