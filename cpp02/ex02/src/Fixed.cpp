@@ -40,17 +40,17 @@ float Fixed::toFloat() const {
 
 int Fixed::toInt() const { return raw_ / (1 << kFractionalBits); }
 
-bool Fixed::operator>(const Fixed& rhs) const { return raw_ > rhs.raw_; }
-
 bool Fixed::operator<(const Fixed& rhs) const { return raw_ < rhs.raw_; }
 
-bool Fixed::operator>=(const Fixed& rhs) const { return raw_ >= rhs.raw_; }
+bool Fixed::operator>(const Fixed& rhs) const { return rhs < *this; }
 
-bool Fixed::operator<=(const Fixed& rhs) const { return raw_ <= rhs.raw_; }
+bool Fixed::operator<=(const Fixed& rhs) const { return !(*this > rhs); }
+
+bool Fixed::operator>=(const Fixed& rhs) const { return !(*this < rhs); }
 
 bool Fixed::operator==(const Fixed& rhs) const { return raw_ == rhs.raw_; }
 
-bool Fixed::operator!=(const Fixed& rhs) const { return raw_ != rhs.raw_; }
+bool Fixed::operator!=(const Fixed& rhs) const { return !(*this == rhs); }
 
 Fixed Fixed::operator+(const Fixed& rhs) const {
   Fixed r;

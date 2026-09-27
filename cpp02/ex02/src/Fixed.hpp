@@ -19,10 +19,10 @@ class Fixed {
   float toFloat() const;
   int toInt() const;
 
-  bool operator>(const Fixed& rhs) const;
   bool operator<(const Fixed& rhs) const;
-  bool operator>=(const Fixed& rhs) const;
+  bool operator>(const Fixed& rhs) const;
   bool operator<=(const Fixed& rhs) const;
+  bool operator>=(const Fixed& rhs) const;
   bool operator==(const Fixed& rhs) const;
   bool operator!=(const Fixed& rhs) const;
 
