@@ -3,7 +3,6 @@
 #include <cmath>
 #include <iostream>
 
-// constructors
 Fixed::Fixed() : raw_(0) { std::cout << "Default constructor called\n"; }
 
 Fixed::Fixed(const Fixed& copy) {
@@ -20,7 +19,6 @@ Fixed::Fixed(const float nb_float)
   std::cout << "Float constructor called\n";
 }
 
-// assignment operators
 Fixed& Fixed::operator=(const Fixed& copy) {
   std::cout << "Copy assignment operator called\n";
 
@@ -30,10 +28,8 @@ Fixed& Fixed::operator=(const Fixed& copy) {
   return *this;
 }
 
-// destructors
 Fixed::~Fixed() { std::cout << "Destructor called\n"; }
 
-// other functions
 int Fixed::getRawBits() const { return raw_; }
 
 void Fixed::setRawBits(const int raw) { raw_ = raw; }
@@ -42,9 +38,8 @@ float Fixed::toFloat() const {
   return static_cast<float>(raw_) / (1 << kFractionalBits);
 }
 
-int Fixed::toInt() const { return raw_ >> kFractionalBits; }
+int Fixed::toInt() const { return raw_ / (1 << kFractionalBits); }
 
-// stream output
 std::ostream& operator<<(std::ostream& out, const Fixed& right) {
   out << right.toFloat();
   return out;
