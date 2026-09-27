@@ -37,7 +37,8 @@ void Fixed::setRawBits(const int raw) { raw_ = raw; }
 float Fixed::toFloat() const {
   return static_cast<float>(raw_) / (1 << kFractionalBits);
 }
-int Fixed::toInt() const { return raw_ >> kFractionalBits; }
+
+int Fixed::toInt() const { return raw_ / (1 << kFractionalBits); }
 
 bool Fixed::operator>(const Fixed& rhs) const { return raw_ > rhs.raw_; }
 
