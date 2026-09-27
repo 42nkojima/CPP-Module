@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-Fixed::Fixed() : value_(0) { std::cout << "Default constructor called\n"; }
+Fixed::Fixed() : raw_(0) { std::cout << "Default constructor called\n"; }
 
 Fixed::Fixed(const Fixed& copy) {
   std::cout << "Copy constructor called\n";
@@ -22,7 +22,7 @@ Fixed::~Fixed() { std::cout << "Destructor called\n"; }
 
 int Fixed::getRawBits() const {
   std::cout << "getRawBits member function called\n";
-  return value_;
+  return raw_;
 }
 
-void Fixed::setRawBits(const int raw) { value_ = raw; }
+void Fixed::setRawBits(const int raw) { raw_ = raw; }

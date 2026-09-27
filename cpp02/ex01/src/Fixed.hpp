@@ -25,10 +25,10 @@ class Fixed {
   int toInt() const;
 
  private:
-  // value_ holds the real value scaled by 2^kFractionalBits.
-  // e.g. 42.42f -> 10860, so one unit of value_ represents 1/256.
+  // raw_ holds the real value scaled by 2^kFractionalBits.
+  // e.g. 42.42f -> 10860, so one unit of raw_ represents 1/256.
   static const int kFractionalBits = 8;
-  int value_;
+  int raw_;
 };
 
 std::ostream& operator<<(std::ostream& out, const Fixed& right);
