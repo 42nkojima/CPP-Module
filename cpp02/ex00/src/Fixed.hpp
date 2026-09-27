@@ -12,7 +12,7 @@ class Fixed {
   void setRawBits(const int raw);
 
  private:
-  int value_;
+  int raw_;
   static const int kFractionalBits = 8;
 };
 
