@@ -66,7 +66,8 @@ Fixed Fixed::operator-(const Fixed& rhs) const {
 
 Fixed Fixed::operator*(const Fixed& rhs) const {
   Fixed r;
-  r.setRawBits((int)((long)raw_ * rhs.raw_) >> kFractionalBits);
+  r.setRawBits(static_cast<int>((static_cast<long>(raw_) * rhs.raw_) >>
+                                kFractionalBits));
   return r;
 }
 
