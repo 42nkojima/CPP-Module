@@ -19,12 +19,17 @@ class Fixed {
   float toFloat() const;
   int toInt() const;
 
-  bool operator>(const Fixed& copy) const;
-  bool operator<(const Fixed& copy) const;
-  bool operator>=(const Fixed& copy) const;
-  bool operator<=(const Fixed& copy) const;
-  bool operator==(const Fixed& copy) const;
-  bool operator!=(const Fixed& copy) const;
+  bool operator>(const Fixed& rhs) const;
+  bool operator<(const Fixed& rhs) const;
+  bool operator>=(const Fixed& rhs) const;
+  bool operator<=(const Fixed& rhs) const;
+  bool operator==(const Fixed& rhs) const;
+  bool operator!=(const Fixed& rhs) const;
+
+  Fixed operator+(const Fixed& rhs) const;
+  Fixed operator-(const Fixed& rhs) const;
+  Fixed operator*(const Fixed& rhs) const;
+  Fixed operator/(const Fixed& rhs) const;
 
  private:
   static const int kFractionalBits = 8;
