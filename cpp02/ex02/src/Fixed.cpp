@@ -73,7 +73,12 @@ Fixed Fixed::operator*(const Fixed& rhs) const {
 
 Fixed Fixed::operator/(const Fixed& rhs) const {
   Fixed r;
-  r.setRawBits((int)((long)raw_ << kFractionalBits) / rhs.raw_);
+  if (rhs.raw_ == 0) {
+    std::cerr << "Error: division by zero\n";
+    return r;
+  }
+  r.setRawBits(static_cast<int>((static_cast<long>(raw_) << kFractionalBits) /
+                                rhs.raw_));
   return r;
 }
 
