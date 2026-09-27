@@ -5,19 +5,15 @@
 
 class Fixed {
  public:
-  // constructors
   Fixed();
   Fixed(const Fixed& copy);
   Fixed(const int nb_integer);
   Fixed(const float nb_float);
 
-  // assignment operators
   Fixed& operator=(const Fixed& copy);
 
-  // destructor
   ~Fixed();
 
-  // other functions
   int getRawBits() const;
   void setRawBits(const int raw);
 

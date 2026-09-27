@@ -2,6 +2,7 @@
 #define FIXED_HPP
 
 #include <ostream>
+
 class Fixed {
  public:
   Fixed();
