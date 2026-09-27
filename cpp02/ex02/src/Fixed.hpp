@@ -31,6 +31,11 @@ class Fixed {
   Fixed operator*(const Fixed& rhs) const;
   Fixed operator/(const Fixed& rhs) const;
 
+  Fixed& operator++();
+  Fixed operator++(int);
+  Fixed& operator--();
+  Fixed operator--(int);
+
  private:
   static const int kFractionalBits = 8;
   int raw_;

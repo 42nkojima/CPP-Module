@@ -33,30 +33,32 @@ static void testComparison() {
   std::cout << (a != b) << std::endl;  // 1
 }
 
-// static void testArithmetic() {
-//   std::cout << "--- arithmetic ---" << std::endl;
+static void testArithmetic() {
+  std::cout << "--- arithmetic ---" << std::endl;
 
-//   Fixed const a(10.5f);
-//   Fixed const b(2);
+  Fixed const a(10.5f);
+  Fixed const b(2);
 
-//   std::cout << (a + b) << std::endl;  // 12.5
-//   std::cout << (a - b) << std::endl;  // 8.5
-//   std::cout << (a * b) << std::endl;  // 21
-//   std::cout << (a / b) << std::endl;  // 5.25
-// }
+  std::cout << (a + b) << std::endl;  // 12.5
+  std::cout << (a - b) << std::endl;  // 8.5
+  std::cout << (a * b) << std::endl;  // 21
+  std::cout << (a / b) << std::endl;  // 5.25
 
-// static void testIncrementDecrement() {
-//   std::cout << "--- increment / decrement ---" << std::endl;
+  std::cout << (a / 0) << std::endl;  // error
+}
 
-//   Fixed a;
+static void testIncrementDecrement() {
+  std::cout << "--- increment / decrement ---" << std::endl;
 
-//   std::cout << ++a << std::endl;  // 0.00390625
-//   std::cout << a++ << std::endl;  // 0.00390625
-//   std::cout << a << std::endl;  // 0.0078125
-//   std::cout << --a << std::endl;  // 0.00390625
-//   std::cout << a-- << std::endl;  // 0.00390625
-//   std::cout << a << std::endl;  // 0
-// }
+  Fixed a;
+
+  std::cout << ++a << std::endl;  // 0.00390625
+  std::cout << a++ << std::endl;  // 0.00390625
+  std::cout << a << std::endl;    // 0.0078125
+  std::cout << --a << std::endl;  // 0.00390625
+  std::cout << a-- << std::endl;  // 0.00390625
+  std::cout << a << std::endl;    // 0
+}
 
 // static void testMinMax() {
 //   std::cout << "--- min / max ---" << std::endl;
@@ -75,8 +77,8 @@ static void testComparison() {
 int main(void) {
   // testSubject();
   testComparison();
-  // testArithmetic();
-  // testIncrementDecrement();
+  testArithmetic();
+  testIncrementDecrement();
   // testMinMax();
 
   return 0;

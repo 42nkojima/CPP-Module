@@ -82,6 +82,28 @@ Fixed Fixed::operator/(const Fixed& rhs) const {
   return r;
 }
 
+Fixed& Fixed::operator++() {
+  ++raw_;
+  return *this;
+}
+
+Fixed Fixed::operator++(int) {
+  Fixed tmp(*this);
+  ++(*this);
+  return tmp;
+}
+
+Fixed& Fixed::operator--() {
+  --raw_;
+  return *this;
+}
+
+Fixed Fixed::operator--(int) {
+  Fixed tmp(*this);
+  --(*this);
+  return tmp;
+}
+
 std::ostream& operator<<(std::ostream& out, const Fixed& right) {
   out << right.toFloat();
   return out;
