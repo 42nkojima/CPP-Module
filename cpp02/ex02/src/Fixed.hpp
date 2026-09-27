@@ -28,7 +28,7 @@ class Fixed {
 
  private:
   static const int kFractionalBits = 8;
-  int value_;
+  int raw_;
 };
 
 std::ostream& operator<<(std::ostream& out, const Fixed& right);
