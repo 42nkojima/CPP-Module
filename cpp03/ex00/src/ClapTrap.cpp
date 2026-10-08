@@ -17,7 +17,7 @@ ClapTrap::ClapTrap(const ClapTrap& copy)
 
 ClapTrap::ClapTrap(const std::string& name)
     : name_(name), hit_pts_(10), energy_pts_(10), attack_dmg_(0) {
-  std::cout << "ClapTrap " << name_ << " constractor called\n";
+  std::cout << "ClapTrap " << name_ << " constructor called\n";
 }
 
 ClapTrap::~ClapTrap() {
@@ -45,7 +45,6 @@ void ClapTrap::attack(const std::string& target) {
             << attack_dmg_ << " points of damage!\n";
 }
 
-//
 void ClapTrap::takeDamage(unsigned int amount) {
   if (amount >= hit_pts_) {
     hit_pts_ = 0;
