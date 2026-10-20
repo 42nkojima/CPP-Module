@@ -2,10 +2,7 @@
 
 #include <iostream>
 
-Cat::Cat() : Animal() {
-  type = "Cat";
-  std::cout << "Cat default constructor called\n";
-}
+Cat::Cat() : Animal("Cat") { std::cout << "Cat default constructor called\n"; }
 
 Cat::Cat(const Cat& copy) : Animal(copy) {
   std::cout << "Cat copy constructor called\n";
