@@ -23,7 +23,3 @@ Animal& Animal::operator=(const Animal& copy) {
 }
 
 const std::string& Animal::getType() const { return type; }
-
-void Animal::makeSound() const {
-  std::cout << "* some generic animal sound *\n";
-}
