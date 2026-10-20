@@ -17,7 +17,7 @@ class Brain {
 
  private:
   static const int kNumIdeas = 100;
-  std::string ideas[kNumIdeas];
+  std::string ideas_[kNumIdeas];
 };
 
 #endif
