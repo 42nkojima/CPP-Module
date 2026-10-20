@@ -1,8 +1,11 @@
 #ifndef CAT_HPP
 #define CAT_HPP
 
+#include <string>
+
 #include "Animal.hpp"
-#include "Brain.hpp"
+
+class Brain;
 
 class Cat : public Animal {
  public:
@@ -14,7 +17,8 @@ class Cat : public Animal {
   Cat& operator=(const Cat& copy);
 
   void makeSound() const;
-  Brain* getBrain() const;
+  std::string getIdea(int index) const;
+  void setIdea(int index, const std::string& idea);
 
  private:
   Brain* brain_;

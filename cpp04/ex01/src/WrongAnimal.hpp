@@ -16,6 +16,8 @@ class WrongAnimal {
   void makeSound() const;
 
  protected:
+  explicit WrongAnimal(const std::string& type);
+
   std::string type;
 };
 

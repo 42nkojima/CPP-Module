@@ -2,8 +2,9 @@
 
 #include <iostream>
 
-Dog::Dog() : Animal(), brain_(new Brain()) {
-  type = "Dog";
+#include "Brain.hpp"
+
+Dog::Dog() : Animal("Dog"), brain_(new Brain()) {
   std::cout << "Dog default constructor called\n";
 }
 
@@ -27,4 +28,8 @@ Dog& Dog::operator=(const Dog& copy) {
 
 void Dog::makeSound() const { std::cout << "Woof!\n"; }
 
-Brain* Dog::getBrain() const { return brain_; }
+std::string Dog::getIdea(int index) const { return brain_->getIdea(index); }
+
+void Dog::setIdea(int index, const std::string& idea) {
+  brain_->setIdea(index, idea);
+}
