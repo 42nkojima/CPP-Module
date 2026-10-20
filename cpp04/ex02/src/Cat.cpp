@@ -27,4 +27,8 @@ Cat& Cat::operator=(const Cat& copy) {
 
 void Cat::makeSound() const { std::cout << "Meow!\n"; }
 
-Brain* Cat::getBrain() const { return brain_; }
+std::string Cat::getIdea(int index) const { return brain_->getIdea(index); }
+
+void Cat::setIdea(int index, const std::string& idea) {
+  brain_->setIdea(index, idea);
+}
