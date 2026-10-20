@@ -16,6 +16,8 @@ class Animal {
   virtual void makeSound() const = 0;
 
  protected:
+  explicit Animal(const std::string& type);
+
   std::string type;
 };
 

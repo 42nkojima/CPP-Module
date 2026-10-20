@@ -4,8 +4,7 @@
 
 #include "Brain.hpp"
 
-Cat::Cat() : Animal(), brain_(new Brain()) {
-  type = "Cat";
+Cat::Cat() : Animal("Cat"), brain_(new Brain()) {
   std::cout << "Cat default constructor called\n";
 }
 
