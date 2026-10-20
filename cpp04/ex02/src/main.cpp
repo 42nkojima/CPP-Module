@@ -70,6 +70,8 @@ static void testAbstract() {
   std::cout << std::endl << "--- abstract ---" << std::endl;
 
   // const Animal* meta = new Animal(); // error: Animal is abstract
+  // Dog d; Cat c; Animal& ref = d;
+  // ref = c; // error: Animal::operator= is protected
   const Animal* dog = new Dog();
   dog->makeSound();
   delete dog;
