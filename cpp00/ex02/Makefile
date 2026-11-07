@@ -3,6 +3,7 @@ NAME = account
 SRC_DIR = src
 OBJ_DIR = obj
 
+CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = Account.cpp tests.cpp
