@@ -3,6 +3,7 @@ NAME = violence
 SRC_DIR = src
 OBJ_DIR = obj
 
+CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
