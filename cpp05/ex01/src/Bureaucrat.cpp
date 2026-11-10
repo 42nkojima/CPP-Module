@@ -1,6 +1,9 @@
 #include "Bureaucrat.hpp"
 
+#include <iostream>
 #include <ostream>
+
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat() : name("default"), grade(kLowestGrade) {}
 
@@ -41,6 +44,16 @@ void Bureaucrat::incrementGrade() {
 void Bureaucrat::decrementGrade() {
   validateGrade(grade + 1);
   ++grade;
+}
+
+void Bureaucrat::signForm(Form& form) const {
+  try {
+    form.beSigned(*this);
+    std::cout << getName() << " signed " << form.getName() << "\n";
+  } catch (std::exception& e) {
+    std::cout << getName() << " couldn't sign " << form.getName() << " because "
+              << e.what() << ".\n";
+  }
 }
 
 void Bureaucrat::validateGrade(int grade) {
