@@ -34,6 +34,8 @@ class Bureaucrat {
   static const int kHighestGrade = 1;
   static const int kLowestGrade = 150;
 
+  static void validateGrade(int grade);
+
   const std::string name;
   int grade;
 };
