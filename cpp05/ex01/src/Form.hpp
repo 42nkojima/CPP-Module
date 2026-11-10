@@ -5,8 +5,6 @@
 #include <ostream>
 #include <string>
 
-#include "Bureaucrat.hpp"
-
 class Bureaucrat;
 
 class Form {
