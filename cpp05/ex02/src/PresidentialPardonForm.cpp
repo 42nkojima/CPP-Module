@@ -5,14 +5,14 @@
 #include "AForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm()
-    : AForm("nkoji", kGardenToSign, kGardenToExecute), target("default") {}
+    : AForm("nkoji", kGardenToSign, kGardenToExecute), target_("default") {}
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
-    : AForm("nkoji", kGardenToSign, kGardenToExecute), target(target) {}
+    : AForm("nkoji", kGardenToSign, kGardenToExecute), target_(target) {}
 
 PresidentialPardonForm::PresidentialPardonForm(
     const PresidentialPardonForm& copy)
-    : AForm(copy), target(copy.target) {}
+    : AForm(copy), target_(copy.target_) {}
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
@@ -25,5 +25,5 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(
 }
 
 void PresidentialPardonForm::executeAction() const {
-  std::cout << target << " has been pardoned by Zaphod Beeblebrox.\n";
+  std::cout << target_ << " has been pardoned by Zaphod Beeblebrox.\n";
 }

@@ -2,21 +2,21 @@
 
 #include <ostream>
 
-Bureaucrat::Bureaucrat() : name("default"), grade(kLowestGrade) {}
+Bureaucrat::Bureaucrat() : name_("default"), grade_(kLowestGrade) {}
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade)
-    : name(name), grade(grade) {
+    : name_(name), grade_(grade) {
   validateGrade(grade);
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& copy)
-    : name(copy.name), grade(copy.grade) {}
+    : name_(copy.name_), grade_(copy.grade_) {}
 
 Bureaucrat::~Bureaucrat() {}
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& copy) {
   if (this != &copy) {
-    grade = copy.grade;
+    grade_ = copy.grade_;
   }
   return *this;
 }
@@ -29,18 +29,18 @@ const char* Bureaucrat::GradeTooLowException::what() const throw() {
   return "Bureaucrat: grade is too low";
 }
 
-const std::string& Bureaucrat::getName() const { return name; }
+const std::string& Bureaucrat::getName() const { return name_; }
 
-int Bureaucrat::getGrade() const { return grade; }
+int Bureaucrat::getGrade() const { return grade_; }
 
 void Bureaucrat::incrementGrade() {
-  validateGrade(grade - 1);
-  --grade;
+  validateGrade(grade_ - 1);
+  --grade_;
 }
 
 void Bureaucrat::decrementGrade() {
-  validateGrade(grade + 1);
-  ++grade;
+  validateGrade(grade_ + 1);
+  ++grade_;
 }
 
 void Bureaucrat::validateGrade(int grade) {

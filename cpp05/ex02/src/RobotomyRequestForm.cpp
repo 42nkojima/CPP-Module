@@ -5,14 +5,14 @@
 
 RobotomyRequestForm::RobotomyRequestForm()
     : AForm("robotomy request", kGardenToSign, kGardenToExecute),
-      target("default") {}
+      target_("default") {}
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
     : AForm("robotomy request", kGardenToSign, kGardenToExecute),
-      target(target) {}
+      target_(target) {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy)
-    : AForm(copy), target(copy.target) {}
+    : AForm(copy), target_(copy.target_) {}
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
@@ -29,8 +29,8 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(
 void RobotomyRequestForm::executeAction() const {
   std::cout << "* drilling noises *\n";
   if (std::rand() % 2 == 0) {
-    std::cout << target << " has been robotomized successfully.\n";
+    std::cout << target_ << " has been robotomized successfully.\n";
   } else {
-    std::cout << "The robotomy on " << target << " failed.\n";
+    std::cout << "The robotomy on " << target_ << " failed.\n";
   }
 }

@@ -21,7 +21,7 @@ class RobotomyRequestForm : public AForm {
 
   void executeAction() const;
 
-  const std::string target;
+  const std::string target_;
 };
 
 #endif

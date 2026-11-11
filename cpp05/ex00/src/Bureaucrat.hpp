@@ -36,8 +36,8 @@ class Bureaucrat {
 
   static void validateGrade(int grade);
 
-  const std::string name;
-  int grade;
+  const std::string name_;
+  int grade_;
 };
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& right);
