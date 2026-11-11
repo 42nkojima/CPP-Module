@@ -10,11 +10,11 @@ static void testValidGrades() {
   try {
     const Bureaucrat highest("Highest", 1);
     const Bureaucrat lowest("Lowest", 150);
-    const Bureaucrat byDefault;
+    const Bureaucrat by_default;
 
     std::cout << highest << std::endl;
     std::cout << lowest << std::endl;
-    std::cout << byDefault << std::endl;
+    std::cout << by_default << std::endl;
   } catch (std::exception& e) {
     std::cout << "unexpected: " << e.what() << std::endl;
   }
@@ -114,19 +114,20 @@ static void testFormValid() {
 
   try {
     const Form form("Contract", 50, 25);
-    const Form byDefault;
+    const Form by_default;
 
     std::cout << form << std::endl;  // a new form is not signed
-    std::cout << byDefault << std::endl;
+    std::cout << by_default << std::endl;
   } catch (std::exception& e) {
     std::cout << "unexpected: " << e.what() << std::endl;
   }
 }
 
-static void tryConstructForm(int gradeToSign, int gradeToExecute) {
-  std::cout << "sign " << gradeToSign << ", execute " << gradeToExecute << ": ";
+static void tryConstructForm(int grade_to_sign, int grade_to_execute) {
+  std::cout << "sign " << grade_to_sign << ", execute " << grade_to_execute
+            << ": ";
   try {
-    const Form form("Invalid", gradeToSign, gradeToExecute);
+    const Form form("Invalid", grade_to_sign, grade_to_execute);
     std::cout << "unexpected: " << form << std::endl;
   } catch (std::exception& e) {
     std::cout << e.what() << std::endl;
@@ -180,7 +181,7 @@ static void testFormCopy() {
   std::cout << copied << std::endl;
 
   Form assigned("Other", 1, 1);
-  assigned = original;  // name and grades are const: only isSigned changes
+  assigned = original;  // name and grades are const: only is_signed_ changes
   std::cout << assigned << std::endl;
 }
 
