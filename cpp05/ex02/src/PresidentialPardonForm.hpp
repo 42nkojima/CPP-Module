@@ -16,8 +16,8 @@ class PresidentialPardonForm : public AForm {
   ~PresidentialPardonForm();
 
  private:
-  static const int kGardenToSign = 25;
-  static const int kGardenToExecute = 5;
+  static const int kGradeToSign = 25;
+  static const int kGradeToExecute = 5;
 
   void executeAction() const;
 

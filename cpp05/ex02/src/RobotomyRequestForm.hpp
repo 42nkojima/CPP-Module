@@ -16,8 +16,8 @@ class RobotomyRequestForm : public AForm {
   ~RobotomyRequestForm();
 
  private:
-  static const int kGardenToSign = 72;
-  static const int kGardenToExecute = 45;
+  static const int kGradeToSign = 72;
+  static const int kGradeToExecute = 45;
 
   void executeAction() const;
 

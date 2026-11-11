@@ -5,11 +5,11 @@
 #include "AForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm()
-    : AForm("presidential pardon", kGardenToSign, kGardenToExecute),
+    : AForm("presidential pardon", kGradeToSign, kGradeToExecute),
       target_("default") {}
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
-    : AForm("presidential pardon", kGardenToSign, kGardenToExecute),
+    : AForm("presidential pardon", kGradeToSign, kGradeToExecute),
       target_(target) {}
 
 PresidentialPardonForm::PresidentialPardonForm(

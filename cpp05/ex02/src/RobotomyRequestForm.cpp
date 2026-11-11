@@ -4,11 +4,11 @@
 #include <iostream>
 
 RobotomyRequestForm::RobotomyRequestForm()
-    : AForm("robotomy request", kGardenToSign, kGardenToExecute),
+    : AForm("robotomy request", kGradeToSign, kGradeToExecute),
       target_("default") {}
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
-    : AForm("robotomy request", kGardenToSign, kGardenToExecute),
+    : AForm("robotomy request", kGradeToSign, kGradeToExecute),
       target_(target) {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy)

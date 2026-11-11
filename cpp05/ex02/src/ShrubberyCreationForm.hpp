@@ -22,8 +22,8 @@ class ShrubberyCreationForm : public AForm {
   ~ShrubberyCreationForm();
 
  private:
-  static const int kGardenToSign = 145;
-  static const int kGardenToExecute = 137;
+  static const int kGradeToSign = 145;
+  static const int kGradeToExecute = 137;
 
   void executeAction() const;
 

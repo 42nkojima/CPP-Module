@@ -10,11 +10,11 @@ const char* ShrubberyCreationForm::FileOpenException::what() const throw() {
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm()
-    : AForm("shrubbery creation", kGardenToSign, kGardenToExecute),
+    : AForm("shrubbery creation", kGradeToSign, kGradeToExecute),
       target_("default") {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
-    : AForm("shrubbery creation", kGardenToSign, kGardenToExecute),
+    : AForm("shrubbery creation", kGradeToSign, kGradeToExecute),
       target_(target) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy)
