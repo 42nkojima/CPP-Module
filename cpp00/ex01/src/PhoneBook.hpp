@@ -6,9 +6,6 @@
 #include "Contact.hpp"
 
 class PhoneBook {
- private:
-  static const int kMaxContacts = 8;
-
  public:
   PhoneBook();
   void AddContact(const Contact& contact);
@@ -17,6 +14,8 @@ class PhoneBook {
   std::string ContactDetailText(int index) const;
 
  private:
+  static const int kMaxContacts = 8;
+
   int DisplayCount() const;
 
   Contact contacts_[kMaxContacts];
