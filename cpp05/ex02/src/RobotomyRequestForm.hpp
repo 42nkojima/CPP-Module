@@ -13,13 +13,13 @@ class RobotomyRequestForm : public AForm {
 
   RobotomyRequestForm& operator=(const RobotomyRequestForm& copy);
 
-  ~RobotomyRequestForm();
+  virtual ~RobotomyRequestForm();
 
  private:
   static const int kGradeToSign = 72;
   static const int kGradeToExecute = 45;
 
-  void executeAction() const;
+  virtual void executeAction() const;
 
   const std::string target_;
 };

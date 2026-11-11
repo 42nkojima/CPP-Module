@@ -13,13 +13,13 @@ class PresidentialPardonForm : public AForm {
 
   PresidentialPardonForm& operator=(const PresidentialPardonForm& copy);
 
-  ~PresidentialPardonForm();
+  virtual ~PresidentialPardonForm();
 
  private:
   static const int kGradeToSign = 25;
   static const int kGradeToExecute = 5;
 
-  void executeAction() const;
+  virtual void executeAction() const;
 
   const std::string target_;
 };

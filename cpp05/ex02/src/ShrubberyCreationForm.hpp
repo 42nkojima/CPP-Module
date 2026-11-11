@@ -19,13 +19,13 @@ class ShrubberyCreationForm : public AForm {
 
   ShrubberyCreationForm& operator=(const ShrubberyCreationForm& copy);
 
-  ~ShrubberyCreationForm();
+  virtual ~ShrubberyCreationForm();
 
  private:
   static const int kGradeToSign = 145;
   static const int kGradeToExecute = 137;
 
-  void executeAction() const;
+  virtual void executeAction() const;
 
   const std::string target_;
 };
