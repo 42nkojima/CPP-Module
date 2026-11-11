@@ -7,8 +7,8 @@ class Fixed {
  public:
   Fixed();
   Fixed(const Fixed& copy);
-  Fixed(const int nb_integer);
-  Fixed(const float nb_float);
+  explicit Fixed(const int nb_integer);
+  explicit Fixed(const float nb_float);
 
   Fixed& operator=(const Fixed& copy);
 
