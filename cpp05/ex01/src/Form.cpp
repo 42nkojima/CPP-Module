@@ -10,13 +10,13 @@ Form::Form()
       grade_to_sign_(kLowestGrade),
       grade_to_execute_(kLowestGrade) {}
 
-Form::Form(const std::string& name, int gradeToSign, int gradeToExecute)
+Form::Form(const std::string& name, int grade_to_sign, int grade_to_execute)
     : name_(name),
       is_signed_(false),
-      grade_to_sign_(gradeToSign),
-      grade_to_execute_(gradeToExecute) {
-  validateGrade(gradeToSign);
-  validateGrade(gradeToExecute);
+      grade_to_sign_(grade_to_sign),
+      grade_to_execute_(grade_to_execute) {
+  validateGrade(grade_to_sign);
+  validateGrade(grade_to_execute);
 }
 
 Form::Form(const Form& copy)
