@@ -32,6 +32,7 @@ class Bureaucrat {
   void incrementGrade();
   void decrementGrade();
   void signForm(AForm& form) const;
+  void executeForm(const AForm& form) const;
 
  private:
   static const int kHighestGrade = 1;
