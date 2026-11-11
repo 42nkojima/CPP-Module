@@ -14,7 +14,8 @@ class Intern {
 
   Intern& operator=(const Intern& copy);
 
-  AForm* makeForm(const std::string& form_name, const std::string& target);
+  AForm* makeForm(const std::string& form_name,
+                  const std::string& target) const;
 
  private:
 };
