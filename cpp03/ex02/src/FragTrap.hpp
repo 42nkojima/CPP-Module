@@ -13,7 +13,7 @@ class FragTrap : public ClapTrap {
 
   FragTrap& operator=(const FragTrap& copy);
 
-  ~FragTrap();
+  virtual ~FragTrap();
 
   void highFivesGuys();
 };
