@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "AForm.hpp"
+
 class Intern {
  public:
   Intern();
@@ -12,7 +14,7 @@ class Intern {
 
   Intern& operator=(const Intern& copy);
 
-  void makeForm(const std::string& form_name, const std::string& target);
+  AForm* makeForm(const std::string& form_name, const std::string& target);
 
  private:
 };
