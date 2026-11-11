@@ -23,9 +23,9 @@ class Form {
   Form(const std::string& name, int grade_to_sign, int grade_to_execute);
   Form(const Form& copy);
 
-  ~Form();
-
   Form& operator=(const Form& copy);
+
+  ~Form();
 
   const std::string& getName() const;
   bool getIsSigned() const;

@@ -33,14 +33,14 @@ Form::Form(const Form& copy)
       grade_to_sign_(copy.grade_to_sign_),
       grade_to_execute_(copy.grade_to_execute_) {}
 
-Form::~Form() {}
-
 Form& Form::operator=(const Form& copy) {
   if (this != &copy) {
     is_signed_ = copy.is_signed_;
   }
   return *this;
 }
+
+Form::~Form() {}
 
 const std::string& Form::getName() const { return name_; }
 
