@@ -56,6 +56,8 @@ static void testUnknownForm() {
 }
 
 static void testCopy() {
+  std::cout << std::endl << "--- copy ---" << std::endl;
+
   const Intern original;
   const Intern copied(original);
   Intern assigned;
