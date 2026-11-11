@@ -5,6 +5,14 @@
 
 #include "AForm.hpp"
 
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
+  return "Bureaucrat: grade is too high";
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
+  return "Bureaucrat: grade is too low";
+}
+
 Bureaucrat::Bureaucrat() : name_("default"), grade_(kLowestGrade) {}
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade)
@@ -22,14 +30,6 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& copy) {
     grade_ = copy.grade_;
   }
   return *this;
-}
-
-const char* Bureaucrat::GradeTooHighException::what() const throw() {
-  return "Bureaucrat: grade is too high";
-}
-
-const char* Bureaucrat::GradeTooLowException::what() const throw() {
-  return "Bureaucrat: grade is too low";
 }
 
 const std::string& Bureaucrat::getName() const { return name_; }

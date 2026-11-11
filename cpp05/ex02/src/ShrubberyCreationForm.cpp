@@ -5,6 +5,10 @@
 
 #include "AForm.hpp"
 
+const char* ShrubberyCreationForm::FileOpenException::what() const throw() {
+  return "ShrubberyCreationForm: cannot open the output file";
+}
+
 ShrubberyCreationForm::ShrubberyCreationForm()
     : AForm("shrubbery creation", kGardenToSign, kGardenToExecute),
       target_("default") {}
@@ -24,10 +28,6 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(
     AForm::operator=(copy);
   }
   return *this;
-}
-
-const char* ShrubberyCreationForm::FileOpenException::what() const throw() {
-  return "ShrubberyCreationForm: cannot open the output file";
 }
 
 void ShrubberyCreationForm::executeAction() const {

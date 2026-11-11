@@ -4,6 +4,18 @@
 
 #include "Bureaucrat.hpp"
 
+const char* AForm::GradeTooHighException::what() const throw() {
+  return "AForm: grade is too high";
+}
+
+const char* AForm::GradeTooLowException::what() const throw() {
+  return "AForm: grade is too low";
+}
+
+const char* AForm::FormNotSignedException::what() const throw() {
+  return "AForm: form is not signed";
+}
+
 AForm::AForm()
     : name_("default"),
       is_signed_(false),
@@ -32,18 +44,6 @@ AForm& AForm::operator=(const AForm& copy) {
     is_signed_ = copy.is_signed_;
   }
   return *this;
-}
-
-const char* AForm::GradeTooHighException::what() const throw() {
-  return "AForm: grade is too high";
-}
-
-const char* AForm::GradeTooLowException::what() const throw() {
-  return "AForm: grade is too low";
-}
-
-const char* AForm::FormNotSignedException::what() const throw() {
-  return "AForm: form is not signed";
 }
 
 const std::string& AForm::getName() const { return name_; }

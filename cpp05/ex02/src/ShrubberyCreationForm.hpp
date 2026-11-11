@@ -7,6 +7,11 @@
 
 class ShrubberyCreationForm : public AForm {
  public:
+  class FileOpenException : public std::exception {
+   public:
+    virtual const char* what() const throw();
+  };
+
   ShrubberyCreationForm();
   explicit ShrubberyCreationForm(const std::string& target);
   ShrubberyCreationForm(const ShrubberyCreationForm& copy);
@@ -14,11 +19,6 @@ class ShrubberyCreationForm : public AForm {
   ~ShrubberyCreationForm();
 
   ShrubberyCreationForm& operator=(const ShrubberyCreationForm& copy);
-
-  class FileOpenException : public std::exception {
-   public:
-    virtual const char* what() const throw();
-  };
 
  private:
   static const int kGardenToSign = 145;
