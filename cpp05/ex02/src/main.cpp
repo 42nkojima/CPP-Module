@@ -1,120 +1,140 @@
-#include <exception>
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
-static void testValidGrades() {
-  std::cout << std::endl << "--- valid grades ---" << std::endl;
+static void testFormInfo() {
+  std::cout << std::endl << "--- form info ---" << std::endl;
 
-  try {
-    const Bureaucrat highest("Highest", 1);
-    const Bureaucrat lowest("Lowest", 150);
-    const Bureaucrat byDefault;
+  const ShrubberyCreationForm shrubbery("home");
+  const RobotomyRequestForm robotomy("Bender");
+  const PresidentialPardonForm pardon("Arthur");
 
-    std::cout << highest << std::endl;
-    std::cout << lowest << std::endl;
-    std::cout << byDefault << std::endl;
-  } catch (std::exception& e) {
-    std::cout << "unexpected: " << e.what() << std::endl;
+  std::cout << shrubbery << std::endl;
+  std::cout << robotomy << std::endl;
+  std::cout << pardon << std::endl;
+}
+
+static void testExecuteUnsigned() {
+  std::cout << std::endl << "--- execute unsigned ---" << std::endl;
+
+  const Bureaucrat boss("Boss", 1);
+  const PresidentialPardonForm pardon("Arthur");
+
+  boss.executeForm(pardon);  // even the highest grade needs a signed form
+}
+
+static void testShrubbery() {
+  std::cout << std::endl
+            << "--- shrubbery (sign 145, exec 137) ---" << std::endl;
+
+  ShrubberyCreationForm form("home");
+  const Bureaucrat sign146("Sign146", 146);
+  const Bureaucrat sign145("Sign145", 145);
+  const Bureaucrat exec138("Exec138", 138);
+  const Bureaucrat exec137("Exec137", 137);
+
+  sign146.signForm(form);
+  sign145.signForm(form);
+  exec138.executeForm(form);
+  exec137.executeForm(form);  // writes home_shrubbery
+}
+
+static void testRobotomy() {
+  std::cout << std::endl << "--- robotomy (sign 72, exec 45) ---" << std::endl;
+
+  RobotomyRequestForm form("Bender");
+  const Bureaucrat sign73("Sign73", 73);
+  const Bureaucrat sign72("Sign72", 72);
+  const Bureaucrat exec46("Exec46", 46);
+  const Bureaucrat exec45("Exec45", 45);
+
+  sign73.signForm(form);
+  sign72.signForm(form);
+  exec46.executeForm(form);
+  for (int i = 0; i < 4; ++i) {
+    exec45.executeForm(form);  // succeeds about half of the time
   }
 }
 
-static void tryConstruct(int grade) {
-  std::cout << "grade " << grade << ": ";
-  try {
-    const Bureaucrat bureaucrat("Invalid", grade);
-    std::cout << "unexpected: " << bureaucrat << std::endl;
-  } catch (std::exception& e) {
-    std::cout << e.what() << std::endl;
-  }
+static void testPresidentialPardon() {
+  std::cout << std::endl
+            << "--- presidential pardon (sign 25, exec 5) ---" << std::endl;
+
+  PresidentialPardonForm form("Arthur");
+  const Bureaucrat sign26("Sign26", 26);
+  const Bureaucrat sign25("Sign25", 25);
+  const Bureaucrat exec6("Exec6", 6);
+  const Bureaucrat exec5("Exec5", 5);
+
+  sign26.signForm(form);
+  sign25.signForm(form);
+  exec6.executeForm(form);
+  exec5.executeForm(form);
 }
 
-static void testInvalidGrades() {
-  std::cout << std::endl << "--- invalid grades ---" << std::endl;
+static void testFileOpenError() {
+  std::cout << std::endl << "--- shrubbery file open error ---" << std::endl;
 
-  tryConstruct(0);
-  tryConstruct(-42);
-  tryConstruct(151);
+  ShrubberyCreationForm form("no/such/dir/home");
+  const Bureaucrat boss("Boss", 1);
+
+  boss.signForm(form);
+  boss.executeForm(form);
 }
 
-static void testIncrementDecrement() {
-  std::cout << std::endl << "--- increment / decrement ---" << std::endl;
+static void testThroughBasePointer() {
+  std::cout << std::endl << "--- through AForm* ---" << std::endl;
 
-  Bureaucrat bureaucrat("Taro", 42);
-  std::cout << bureaucrat << std::endl;
-  bureaucrat.incrementGrade();  // 42 -> 41: a higher rank is a smaller number
-  std::cout << bureaucrat << std::endl;
-  bureaucrat.decrementGrade();  // 41 -> 42
-  std::cout << bureaucrat << std::endl;
-}
+  const int kNumForms = 3;
+  AForm* forms[kNumForms];
+  forms[0] = new ShrubberyCreationForm("garden");
+  forms[1] = new RobotomyRequestForm("Marvin");
+  forms[2] = new PresidentialPardonForm("Ford");
 
-static void testIncrementAtHighest() {
-  std::cout << std::endl << "--- increment at grade 1 ---" << std::endl;
-
-  Bureaucrat bureaucrat("Top", 2);
-  try {
-    bureaucrat.incrementGrade();
-    std::cout << bureaucrat << std::endl;
-    bureaucrat.incrementGrade();
-    std::cout << "unexpected: no exception" << std::endl;
-  } catch (std::exception& e) {
-    std::cout << e.what() << std::endl;
-  }
-  std::cout << bureaucrat << std::endl;  // a failed call keeps the grade
-}
-
-static void testDecrementAtLowest() {
-  std::cout << std::endl << "--- decrement at grade 150 ---" << std::endl;
-
-  Bureaucrat bureaucrat("Bottom", 149);
-  try {
-    bureaucrat.decrementGrade();
-    std::cout << bureaucrat << std::endl;
-    bureaucrat.decrementGrade();
-    std::cout << "unexpected: no exception" << std::endl;
-  } catch (std::exception& e) {
-    std::cout << e.what() << std::endl;
-  }
-  std::cout << bureaucrat << std::endl;  // a failed call keeps the grade
-}
-
-static void testCatchByExactType() {
-  std::cout << std::endl << "--- catch by exact type ---" << std::endl;
-
-  try {
-    const Bureaucrat bureaucrat("TooHigh", 0);
-    std::cout << "unexpected: " << bureaucrat << std::endl;
-  } catch (Bureaucrat::GradeTooHighException& e) {
-    std::cout << "GradeTooHighException: " << e.what() << std::endl;
+  const Bureaucrat boss("Boss", 1);
+  for (int i = 0; i < kNumForms; ++i) {
+    boss.signForm(*forms[i]);
+    boss.executeForm(*forms[i]);  // each form runs its own action
   }
 
-  try {
-    const Bureaucrat bureaucrat("TooLow", 151);
-    std::cout << "unexpected: " << bureaucrat << std::endl;
-  } catch (Bureaucrat::GradeTooLowException& e) {
-    std::cout << "GradeTooLowException: " << e.what() << std::endl;
+  for (int i = 0; i < kNumForms; ++i) {
+    delete forms[i];  // the virtual destructor frees the derived part
   }
 }
 
 static void testCopy() {
   std::cout << std::endl << "--- copy ---" << std::endl;
 
-  const Bureaucrat original("Alice", 42);
-  const Bureaucrat copied(original);
-  std::cout << copied << std::endl;
+  const Bureaucrat boss("Boss", 1);
+  PresidentialPardonForm original("Arthur");
+  boss.signForm(original);
 
-  Bureaucrat assigned("Carol", 100);
-  assigned = original;  // the name is const: only the grade changes
+  const PresidentialPardonForm copied(original);
+  std::cout << copied << std::endl;
+  boss.executeForm(copied);  // the copy is signed and targets Arthur
+
+  PresidentialPardonForm assigned("Trillian");
+  assigned = original;  // target is const: only the signed status changes
   std::cout << assigned << std::endl;
+  boss.executeForm(assigned);  // still targets Trillian
 }
 
 int main() {
-  testValidGrades();
-  testInvalidGrades();
-  testIncrementDecrement();
-  testIncrementAtHighest();
-  testDecrementAtLowest();
-  testCatchByExactType();
+  std::srand(static_cast<unsigned int>(std::time(NULL)));
+
+  testFormInfo();
+  testExecuteUnsigned();
+  testShrubbery();
+  testRobotomy();
+  testPresidentialPardon();
+  testFileOpenError();
+  testThroughBasePointer();
   testCopy();
   return 0;
 }
