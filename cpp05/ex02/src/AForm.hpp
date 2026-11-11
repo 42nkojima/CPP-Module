@@ -5,8 +5,6 @@
 #include <ostream>
 #include <string>
 
-#include "Bureaucrat.hpp"
-
 class Bureaucrat;
 
 class AForm {
@@ -15,7 +13,7 @@ class AForm {
   AForm(const std::string& name, int gradeToSign, int gradeToExecute);
   AForm(const AForm& copy);
 
-  ~AForm();
+  virtual ~AForm();
 
   AForm& operator=(const AForm& copy);
 
@@ -29,17 +27,25 @@ class AForm {
     virtual const char* what() const throw();
   };
 
+  class FormNotSignedException : public std::exception {
+   public:
+    virtual const char* what() const throw();
+  };
+
   const std::string& getName() const;
   bool getIsSigned() const;
   int getGradeToSign() const;
   int getGradeToExecute() const;
   void beSigned(const Bureaucrat& bureaucrat);
+  void execute(const Bureaucrat& executor) const;
 
  private:
   static const int kHighestGrade = 1;
   static const int kLowestGrade = 150;
 
   static void validateGrade(int grade);
+
+  virtual void executeAction() const = 0;
 
   const std::string name;
   bool isSigned;

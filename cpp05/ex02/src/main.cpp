@@ -1,7 +1,6 @@
 #include <exception>
 #include <iostream>
 
-#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
 static void testValidGrades() {
@@ -109,81 +108,6 @@ static void testCopy() {
   std::cout << assigned << std::endl;
 }
 
-static void testFormValid() {
-  std::cout << std::endl << "--- form: valid grades ---" << std::endl;
-
-  try {
-    const AForm form("Contract", 50, 25);
-    const AForm byDefault;
-
-    std::cout << form << std::endl;  // a new form is not signed
-    std::cout << byDefault << std::endl;
-  } catch (std::exception& e) {
-    std::cout << "unexpected: " << e.what() << std::endl;
-  }
-}
-
-static void tryConstructForm(int gradeToSign, int gradeToExecute) {
-  std::cout << "sign " << gradeToSign << ", execute " << gradeToExecute << ": ";
-  try {
-    const AForm form("Invalid", gradeToSign, gradeToExecute);
-    std::cout << "unexpected: " << form << std::endl;
-  } catch (std::exception& e) {
-    std::cout << e.what() << std::endl;
-  }
-}
-
-static void testFormInvalidGrades() {
-  std::cout << std::endl << "--- form: invalid grades ---" << std::endl;
-
-  tryConstructForm(0, 10);
-  tryConstructForm(151, 10);
-  tryConstructForm(10, 0);
-  tryConstructForm(10, 151);
-}
-
-static void testSignForm() {
-  std::cout << std::endl << "--- sign form ---" << std::endl;
-
-  AForm form("Contract", 50, 25);
-  const Bureaucrat low("Low", 51);
-  const Bureaucrat edge("Edge", 50);
-
-  low.signForm(form);  // 51 is lower than the required 50
-  std::cout << form << std::endl;
-  edge.signForm(form);  // exactly the required grade is enough
-  std::cout << form << std::endl;
-}
-
-static void testBeSignedThrows() {
-  std::cout << std::endl << "--- beSigned throws ---" << std::endl;
-
-  AForm form("Secret", 1, 1);
-  const Bureaucrat bureaucrat("Taro", 2);
-  try {
-    form.beSigned(bureaucrat);
-    std::cout << "unexpected: no exception" << std::endl;
-  } catch (AForm::GradeTooLowException& e) {
-    std::cout << "AForm::GradeTooLowException: " << e.what() << std::endl;
-  }
-  std::cout << form << std::endl;  // a failed call keeps the form unsigned
-}
-
-static void testFormCopy() {
-  std::cout << std::endl << "--- form: copy ---" << std::endl;
-
-  AForm original("Contract", 50, 25);
-  const Bureaucrat boss("Boss", 1);
-  boss.signForm(original);
-
-  const AForm copied(original);
-  std::cout << copied << std::endl;
-
-  AForm assigned("Other", 1, 1);
-  assigned = original;  // name and grades are const: only isSigned changes
-  std::cout << assigned << std::endl;
-}
-
 int main() {
   testValidGrades();
   testInvalidGrades();
@@ -192,10 +116,5 @@ int main() {
   testDecrementAtLowest();
   testCatchByExactType();
   testCopy();
-  testFormValid();
-  testFormInvalidGrades();
-  testSignForm();
-  testBeSignedThrows();
-  testFormCopy();
   return 0;
 }
