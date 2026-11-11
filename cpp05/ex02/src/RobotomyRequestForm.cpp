@@ -14,8 +14,6 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy)
     : AForm(copy), target_(copy.target_) {}
 
-RobotomyRequestForm::~RobotomyRequestForm() {}
-
 RobotomyRequestForm& RobotomyRequestForm::operator=(
     const RobotomyRequestForm& copy) {
   if (this != &copy) {
@@ -23,6 +21,8 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(
   }
   return *this;
 }
+
+RobotomyRequestForm::~RobotomyRequestForm() {}
 
 // The random seed is set once in main, not here: reseeding on every call
 // would repeat the same result within the same second.

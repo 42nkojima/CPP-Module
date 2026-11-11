@@ -23,14 +23,14 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade)
 Bureaucrat::Bureaucrat(const Bureaucrat& copy)
     : name_(copy.name_), grade_(copy.grade_) {}
 
-Bureaucrat::~Bureaucrat() {}
-
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& copy) {
   if (this != &copy) {
     grade_ = copy.grade_;
   }
   return *this;
 }
+
+Bureaucrat::~Bureaucrat() {}
 
 const std::string& Bureaucrat::getName() const { return name_; }
 

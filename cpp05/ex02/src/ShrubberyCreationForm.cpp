@@ -20,8 +20,6 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy)
     : AForm(copy), target_(copy.target_) {}
 
-ShrubberyCreationForm::~ShrubberyCreationForm() {}
-
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(
     const ShrubberyCreationForm& copy) {
   if (this != &copy) {
@@ -29,6 +27,8 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(
   }
   return *this;
 }
+
+ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
 void ShrubberyCreationForm::executeAction() const {
   const std::string filename = target_ + "_shrubbery";

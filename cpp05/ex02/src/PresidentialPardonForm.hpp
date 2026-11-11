@@ -11,9 +11,9 @@ class PresidentialPardonForm : public AForm {
   explicit PresidentialPardonForm(const std::string& target);
   PresidentialPardonForm(const PresidentialPardonForm& copy);
 
-  ~PresidentialPardonForm();
-
   PresidentialPardonForm& operator=(const PresidentialPardonForm& copy);
+
+  ~PresidentialPardonForm();
 
  private:
   static const int kGardenToSign = 25;

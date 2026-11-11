@@ -16,8 +16,6 @@ PresidentialPardonForm::PresidentialPardonForm(
     const PresidentialPardonForm& copy)
     : AForm(copy), target_(copy.target_) {}
 
-PresidentialPardonForm::~PresidentialPardonForm() {}
-
 PresidentialPardonForm& PresidentialPardonForm::operator=(
     const PresidentialPardonForm& copy) {
   if (this != &copy) {
@@ -25,6 +23,8 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(
   }
   return *this;
 }
+
+PresidentialPardonForm::~PresidentialPardonForm() {}
 
 void PresidentialPardonForm::executeAction() const {
   std::cout << target_ << " has been pardoned by Zaphod Beeblebrox.\n";

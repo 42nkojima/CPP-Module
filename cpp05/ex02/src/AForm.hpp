@@ -28,9 +28,9 @@ class AForm {
   AForm(const std::string& name, int grade_to_sign, int grade_to_execute);
   AForm(const AForm& copy);
 
-  virtual ~AForm();
-
   AForm& operator=(const AForm& copy);
+
+  virtual ~AForm();
 
   const std::string& getName() const;
   bool getIsSigned() const;

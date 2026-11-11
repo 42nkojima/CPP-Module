@@ -11,9 +11,9 @@ class RobotomyRequestForm : public AForm {
   explicit RobotomyRequestForm(const std::string& target);
   RobotomyRequestForm(const RobotomyRequestForm& copy);
 
-  ~RobotomyRequestForm();
-
   RobotomyRequestForm& operator=(const RobotomyRequestForm& copy);
+
+  ~RobotomyRequestForm();
 
  private:
   static const int kGardenToSign = 72;

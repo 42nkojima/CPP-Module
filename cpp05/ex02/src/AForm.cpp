@@ -37,14 +37,14 @@ AForm::AForm(const AForm& copy)
       grade_to_sign_(copy.grade_to_sign_),
       grade_to_execute_(copy.grade_to_execute_) {}
 
-AForm::~AForm() {}
-
 AForm& AForm::operator=(const AForm& copy) {
   if (this != &copy) {
     is_signed_ = copy.is_signed_;
   }
   return *this;
 }
+
+AForm::~AForm() {}
 
 const std::string& AForm::getName() const { return name_; }
 

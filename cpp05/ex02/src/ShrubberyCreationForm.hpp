@@ -16,9 +16,9 @@ class ShrubberyCreationForm : public AForm {
   explicit ShrubberyCreationForm(const std::string& target);
   ShrubberyCreationForm(const ShrubberyCreationForm& copy);
 
-  ~ShrubberyCreationForm();
-
   ShrubberyCreationForm& operator=(const ShrubberyCreationForm& copy);
+
+  ~ShrubberyCreationForm();
 
  private:
   static const int kGardenToSign = 145;
