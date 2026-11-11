@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "AForm.hpp"
+class AForm;
 
 class Intern {
  public:
