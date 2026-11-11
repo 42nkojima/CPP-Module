@@ -9,10 +9,12 @@ std::string Replacer::Apply(const std::string& content) const {
   }
 
   std::string result;
-  std::string::size_type start = 0, pos;
-  while ((pos = content.find(from_, start)) != std::string::npos) {
+  std::string::size_type start = 0;
+  std::string::size_type pos = content.find(from_, start);
+  while (pos != std::string::npos) {
     result += content.substr(start, pos - start) + to_;
     start = pos + from_.length();
+    pos = content.find(from_, start);
   }
   result += content.substr(start);
 
