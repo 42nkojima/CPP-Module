@@ -3,7 +3,7 @@
 #include <iostream>
 #include <ostream>
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat() : name("default"), grade(kLowestGrade) {}
 
@@ -46,7 +46,7 @@ void Bureaucrat::decrementGrade() {
   ++grade;
 }
 
-void Bureaucrat::signForm(Form& form) const {
+void Bureaucrat::signForm(AForm& form) const {
   try {
     form.beSigned(*this);
     std::cout << getName() << " signed " << form.getName() << "\n";

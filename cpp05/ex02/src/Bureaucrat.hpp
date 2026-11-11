@@ -5,7 +5,7 @@
 #include <ostream>
 #include <string>
 
-class Form;
+class AForm;
 
 class Bureaucrat {
  public:
@@ -31,7 +31,7 @@ class Bureaucrat {
   int getGrade() const;
   void incrementGrade();
   void decrementGrade();
-  void signForm(Form& form) const;
+  void signForm(AForm& form) const;
 
  private:
   static const int kHighestGrade = 1;

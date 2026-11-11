@@ -7,7 +7,7 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 DEPFLAGS = -MMD -MP
 
-SRCS = main.cpp Bureaucrat.cpp Form.cpp
+SRCS = main.cpp Bureaucrat.cpp AForm.cpp
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))
 DEPS = $(OBJS:.o=.d)
 
