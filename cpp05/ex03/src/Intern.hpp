@@ -25,6 +25,7 @@ class Intern {
  private:
   static AForm* newFormByName(const std::string& form_name,
                               const std::string& target);
+  static const int kNumForms = 3;
 };
 
 #endif
