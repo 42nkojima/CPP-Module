@@ -9,11 +9,11 @@ static void testValidGrades() {
   try {
     const Bureaucrat highest("Highest", 1);
     const Bureaucrat lowest("Lowest", 150);
-    const Bureaucrat byDefault;
+    const Bureaucrat by_default;
 
     std::cout << highest << std::endl;
     std::cout << lowest << std::endl;
-    std::cout << byDefault << std::endl;
+    std::cout << by_default << std::endl;
   } catch (std::exception& e) {
     std::cout << "unexpected: " << e.what() << std::endl;
   }
