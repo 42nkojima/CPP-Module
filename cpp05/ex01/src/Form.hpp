@@ -39,10 +39,10 @@ class Form {
 
   static void validateGrade(int grade);
 
-  const std::string name;
-  bool isSigned;
-  const int gradeToSign;
-  const int gradeToExecute;
+  const std::string name_;
+  bool is_signed_;
+  const int grade_to_sign_;
+  const int grade_to_execute_;
 };
 
 std::ostream& operator<<(std::ostream& out, const Form& right);

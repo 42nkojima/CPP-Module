@@ -5,31 +5,31 @@
 #include "Bureaucrat.hpp"
 
 Form::Form()
-    : name("default"),
-      isSigned(false),
-      gradeToSign(kLowestGrade),
-      gradeToExecute(kLowestGrade) {}
+    : name_("default"),
+      is_signed_(false),
+      grade_to_sign_(kLowestGrade),
+      grade_to_execute_(kLowestGrade) {}
 
 Form::Form(const std::string& name, int gradeToSign, int gradeToExecute)
-    : name(name),
-      isSigned(false),
-      gradeToSign(gradeToSign),
-      gradeToExecute(gradeToExecute) {
+    : name_(name),
+      is_signed_(false),
+      grade_to_sign_(gradeToSign),
+      grade_to_execute_(gradeToExecute) {
   validateGrade(gradeToSign);
   validateGrade(gradeToExecute);
 }
 
 Form::Form(const Form& copy)
-    : name(copy.name),
-      isSigned(copy.isSigned),
-      gradeToSign(copy.gradeToSign),
-      gradeToExecute(copy.gradeToExecute) {}
+    : name_(copy.name_),
+      is_signed_(copy.is_signed_),
+      grade_to_sign_(copy.grade_to_sign_),
+      grade_to_execute_(copy.grade_to_execute_) {}
 
 Form::~Form() {}
 
 Form& Form::operator=(const Form& copy) {
   if (this != &copy) {
-    isSigned = copy.isSigned;
+    is_signed_ = copy.is_signed_;
   }
   return *this;
 }
@@ -42,19 +42,19 @@ const char* Form::GradeTooLowException::what() const throw() {
   return "Form: grade is too low";
 }
 
-const std::string& Form::getName() const { return name; }
+const std::string& Form::getName() const { return name_; }
 
-bool Form::getIsSigned() const { return isSigned; }
+bool Form::getIsSigned() const { return is_signed_; }
 
-int Form::getGradeToSign() const { return gradeToSign; }
+int Form::getGradeToSign() const { return grade_to_sign_; }
 
-int Form::getGradeToExecute() const { return gradeToExecute; }
+int Form::getGradeToExecute() const { return grade_to_execute_; }
 
 void Form::beSigned(const Bureaucrat& bureaucrat) {
-  if (bureaucrat.getGrade() > gradeToSign) {
+  if (bureaucrat.getGrade() > grade_to_sign_) {
     throw GradeTooLowException();
   }
-  isSigned = true;
+  is_signed_ = true;
 }
 
 void Form::validateGrade(int grade) {
