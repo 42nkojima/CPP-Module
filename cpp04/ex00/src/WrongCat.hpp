@@ -8,9 +8,9 @@ class WrongCat : public WrongAnimal {
   WrongCat();
   WrongCat(const WrongCat& copy);
 
-  ~WrongCat();
-
   WrongCat& operator=(const WrongCat& copy);
+
+  ~WrongCat();
 
   // Hiding the non-virtual WrongAnimal::makeSound is the point of WrongCat.
   // cppcheck-suppress duplInheritedMember
