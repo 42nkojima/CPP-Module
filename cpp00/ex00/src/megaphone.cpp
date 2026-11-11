@@ -1,5 +1,7 @@
 #include <cctype>
+#include <cstddef>
 #include <iostream>
+#include <string>
 
 static void ToUppercase(std::string& str) {
   for (size_t i = 0; i < str.length(); i++) {
