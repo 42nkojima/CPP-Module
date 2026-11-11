@@ -9,14 +9,6 @@ class Bureaucrat;
 
 class Form {
  public:
-  Form();
-  Form(const std::string& name, int grade_to_sign, int grade_to_execute);
-  Form(const Form& copy);
-
-  ~Form();
-
-  Form& operator=(const Form& copy);
-
   class GradeTooHighException : public std::exception {
    public:
     virtual const char* what() const throw();
@@ -26,6 +18,14 @@ class Form {
    public:
     virtual const char* what() const throw();
   };
+
+  Form();
+  Form(const std::string& name, int grade_to_sign, int grade_to_execute);
+  Form(const Form& copy);
+
+  ~Form();
+
+  Form& operator=(const Form& copy);
 
   const std::string& getName() const;
   bool getIsSigned() const;

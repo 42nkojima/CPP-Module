@@ -4,6 +4,14 @@
 
 #include "Bureaucrat.hpp"
 
+const char* Form::GradeTooHighException::what() const throw() {
+  return "Form: grade is too high";
+}
+
+const char* Form::GradeTooLowException::what() const throw() {
+  return "Form: grade is too low";
+}
+
 Form::Form()
     : name_("default"),
       is_signed_(false),
@@ -32,14 +40,6 @@ Form& Form::operator=(const Form& copy) {
     is_signed_ = copy.is_signed_;
   }
   return *this;
-}
-
-const char* Form::GradeTooHighException::what() const throw() {
-  return "Form: grade is too high";
-}
-
-const char* Form::GradeTooLowException::what() const throw() {
-  return "Form: grade is too low";
 }
 
 const std::string& Form::getName() const { return name_; }

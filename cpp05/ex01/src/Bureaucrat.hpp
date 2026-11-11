@@ -9,14 +9,6 @@ class Form;
 
 class Bureaucrat {
  public:
-  Bureaucrat();
-  Bureaucrat(const std::string& name, int grade);
-  Bureaucrat(const Bureaucrat& copy);
-
-  ~Bureaucrat();
-
-  Bureaucrat& operator=(const Bureaucrat& copy);
-
   class GradeTooHighException : public std::exception {
    public:
     virtual const char* what() const throw();
@@ -26,6 +18,14 @@ class Bureaucrat {
    public:
     virtual const char* what() const throw();
   };
+
+  Bureaucrat();
+  Bureaucrat(const std::string& name, int grade);
+  Bureaucrat(const Bureaucrat& copy);
+
+  ~Bureaucrat();
+
+  Bureaucrat& operator=(const Bureaucrat& copy);
 
   const std::string& getName() const;
   int getGrade() const;
