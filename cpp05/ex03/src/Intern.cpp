@@ -7,17 +7,17 @@
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
+const char* Intern::UnknownFormException::what() const throw() {
+  return "Intern: that form is unknown";
+}
+
 Intern::Intern() {}
 
 Intern::Intern(const Intern&) {}
 
-Intern::~Intern() {}
-
 Intern& Intern::operator=(const Intern&) { return *this; }
 
-const char* Intern::UnknownFormException::what() const throw() {
-  return "Intern: that form is unknown";
-}
+Intern::~Intern() {}
 
 AForm* Intern::makeForm(const std::string& form_name,
                         const std::string& target) const {
