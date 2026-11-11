@@ -5,31 +5,31 @@
 #include "Bureaucrat.hpp"
 
 AForm::AForm()
-    : name("default"),
-      isSigned(false),
-      gradeToSign(kLowestGrade),
-      gradeToExecute(kLowestGrade) {}
+    : name_("default"),
+      is_signed_(false),
+      grade_to_sign_(kLowestGrade),
+      grade_to_execute_(kLowestGrade) {}
 
 AForm::AForm(const std::string& name, int gradeToSign, int gradeToExecute)
-    : name(name),
-      isSigned(false),
-      gradeToSign(gradeToSign),
-      gradeToExecute(gradeToExecute) {
+    : name_(name),
+      is_signed_(false),
+      grade_to_sign_(gradeToSign),
+      grade_to_execute_(gradeToExecute) {
   validateGrade(gradeToSign);
   validateGrade(gradeToExecute);
 }
 
 AForm::AForm(const AForm& copy)
-    : name(copy.name),
-      isSigned(copy.isSigned),
-      gradeToSign(copy.gradeToSign),
-      gradeToExecute(copy.gradeToExecute) {}
+    : name_(copy.name_),
+      is_signed_(copy.is_signed_),
+      grade_to_sign_(copy.grade_to_sign_),
+      grade_to_execute_(copy.grade_to_execute_) {}
 
 AForm::~AForm() {}
 
 AForm& AForm::operator=(const AForm& copy) {
   if (this != &copy) {
-    isSigned = copy.isSigned;
+    is_signed_ = copy.is_signed_;
   }
   return *this;
 }
@@ -46,26 +46,26 @@ const char* AForm::FormNotSignedException::what() const throw() {
   return "AForm: form is not signed";
 }
 
-const std::string& AForm::getName() const { return name; }
+const std::string& AForm::getName() const { return name_; }
 
-bool AForm::getIsSigned() const { return isSigned; }
+bool AForm::getIsSigned() const { return is_signed_; }
 
-int AForm::getGradeToSign() const { return gradeToSign; }
+int AForm::getGradeToSign() const { return grade_to_sign_; }
 
-int AForm::getGradeToExecute() const { return gradeToExecute; }
+int AForm::getGradeToExecute() const { return grade_to_execute_; }
 
 void AForm::beSigned(const Bureaucrat& bureaucrat) {
-  if (bureaucrat.getGrade() > gradeToSign) {
+  if (bureaucrat.getGrade() > grade_to_sign_) {
     throw GradeTooLowException();
   }
-  isSigned = true;
+  is_signed_ = true;
 }
 
 void AForm::execute(const Bureaucrat& executor) const {
-  if (!isSigned) {
+  if (!is_signed_) {
     throw FormNotSignedException();
   }
-  if (executor.getGrade() > gradeToExecute) {
+  if (executor.getGrade() > grade_to_execute_) {
     throw GradeTooLowException();
   }
   executeAction();

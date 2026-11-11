@@ -7,14 +7,14 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm()
     : AForm("shrubbery creation", kGardenToSign, kGardenToExecute),
-      target("default") {}
+      target_("default") {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
     : AForm("shrubbery creation", kGardenToSign, kGardenToExecute),
-      target(target) {}
+      target_(target) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy)
-    : AForm(copy), target(copy.target) {}
+    : AForm(copy), target_(copy.target_) {}
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
@@ -31,7 +31,7 @@ const char* ShrubberyCreationForm::FileOpenException::what() const throw() {
 }
 
 void ShrubberyCreationForm::executeAction() const {
-  const std::string filename = target + "_shrubbery";
+  const std::string filename = target_ + "_shrubbery";
   std::ofstream file(filename.c_str());
   if (!file) {
     throw FileOpenException();
