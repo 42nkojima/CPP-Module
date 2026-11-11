@@ -14,8 +14,6 @@ WrongAnimal::WrongAnimal(const WrongAnimal& copy) : type(copy.type) {
   std::cout << "WrongAnimal copy constructor called\n";
 }
 
-WrongAnimal::~WrongAnimal() { std::cout << "WrongAnimal destructor called\n"; }
-
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& copy) {
   std::cout << "WrongAnimal copy assignment operator called\n";
   if (this != &copy) {
@@ -23,6 +21,8 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal& copy) {
   }
   return *this;
 }
+
+WrongAnimal::~WrongAnimal() { std::cout << "WrongAnimal destructor called\n"; }
 
 const std::string& WrongAnimal::getType() const { return type; }
 

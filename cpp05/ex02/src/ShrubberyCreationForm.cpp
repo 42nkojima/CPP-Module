@@ -5,18 +5,20 @@
 
 #include "AForm.hpp"
 
+const char* ShrubberyCreationForm::FileOpenException::what() const throw() {
+  return "ShrubberyCreationForm: cannot open the output file";
+}
+
 ShrubberyCreationForm::ShrubberyCreationForm()
-    : AForm("shrubbery creation", kGardenToSign, kGardenToExecute),
+    : AForm("shrubbery creation", kGradeToSign, kGradeToExecute),
       target_("default") {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
-    : AForm("shrubbery creation", kGardenToSign, kGardenToExecute),
+    : AForm("shrubbery creation", kGradeToSign, kGradeToExecute),
       target_(target) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy)
     : AForm(copy), target_(copy.target_) {}
-
-ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(
     const ShrubberyCreationForm& copy) {
@@ -26,9 +28,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(
   return *this;
 }
 
-const char* ShrubberyCreationForm::FileOpenException::what() const throw() {
-  return "ShrubberyCreationForm: cannot open the output file";
-}
+ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
 void ShrubberyCreationForm::executeAction() const {
   const std::string filename = target_ + "_shrubbery";

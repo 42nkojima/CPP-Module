@@ -74,7 +74,7 @@ static void testMinMax() {
   std::cout << Fixed::max(c, d) << std::endl;  // 2
 }
 
-int main(void) {
+int main() {
   testSubject();
   testComparison();
   testArithmetic();

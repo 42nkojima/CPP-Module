@@ -11,13 +11,13 @@ class PresidentialPardonForm : public AForm {
   explicit PresidentialPardonForm(const std::string& target);
   PresidentialPardonForm(const PresidentialPardonForm& copy);
 
-  ~PresidentialPardonForm();
-
   PresidentialPardonForm& operator=(const PresidentialPardonForm& copy);
 
+  ~PresidentialPardonForm();
+
  private:
-  static const int kGardenToSign = 25;
-  static const int kGardenToExecute = 5;
+  static const int kGradeToSign = 25;
+  static const int kGradeToExecute = 5;
 
   void executeAction() const;
 

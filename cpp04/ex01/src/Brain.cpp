@@ -11,8 +11,6 @@ Brain::Brain(const Brain& copy) {
   }
 }
 
-Brain::~Brain() { std::cout << "Brain destructor called\n"; }
-
 Brain& Brain::operator=(const Brain& copy) {
   std::cout << "Brain copy assignment operator called\n";
   if (this != &copy) {
@@ -22,6 +20,8 @@ Brain& Brain::operator=(const Brain& copy) {
   }
   return *this;
 }
+
+Brain::~Brain() { std::cout << "Brain destructor called\n"; }
 
 std::string Brain::getIdea(int index) const {
   if (index < 0 || index >= kNumIdeas) {
