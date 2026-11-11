@@ -8,9 +8,9 @@ class Animal {
   Animal();
   Animal(const Animal& copy);
 
-  virtual ~Animal();
-
   Animal& operator=(const Animal& copy);
+
+  virtual ~Animal();
 
   const std::string& getType() const;
   virtual void makeSound() const;

@@ -20,14 +20,14 @@ ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
   std::cout << "ScavTrap " << name_ << " constructor called\n";
 }
 
-ScavTrap::~ScavTrap() {
-  std::cout << "ScavTrap " << name_ << " destructor called\n";
-}
-
 ScavTrap& ScavTrap::operator=(const ScavTrap& copy) {
   std::cout << "ScavTrap copy assignment operator called\n";
   ClapTrap::operator=(copy);
   return *this;
+}
+
+ScavTrap::~ScavTrap() {
+  std::cout << "ScavTrap " << name_ << " destructor called\n";
 }
 
 void ScavTrap::attack(const std::string& target) {

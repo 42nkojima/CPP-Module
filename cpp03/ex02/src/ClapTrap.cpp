@@ -20,10 +20,6 @@ ClapTrap::ClapTrap(const std::string& name)
   std::cout << "ClapTrap " << name_ << " constructor called\n";
 }
 
-ClapTrap::~ClapTrap() {
-  std::cout << "ClapTrap " << name_ << " destructor called\n";
-}
-
 ClapTrap& ClapTrap::operator=(const ClapTrap& copy) {
   std::cout << "ClapTrap copy assignment operator called\n";
   if (this != &copy) {
@@ -33,6 +29,10 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& copy) {
     attack_dmg_ = copy.attack_dmg_;
   }
   return *this;
+}
+
+ClapTrap::~ClapTrap() {
+  std::cout << "ClapTrap " << name_ << " destructor called\n";
 }
 
 void ClapTrap::attack(const std::string& target) {

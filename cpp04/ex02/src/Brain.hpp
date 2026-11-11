@@ -8,9 +8,9 @@ class Brain {
   Brain();
   Brain(const Brain& copy);
 
-  ~Brain();
-
   Brain& operator=(const Brain& copy);
+
+  ~Brain();
 
   std::string getIdea(int index) const;
   void setIdea(int index, const std::string& idea);

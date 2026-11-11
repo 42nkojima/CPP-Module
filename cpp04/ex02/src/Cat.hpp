@@ -12,11 +12,11 @@ class Cat : public Animal {
   Cat();
   Cat(const Cat& copy);
 
-  ~Cat();
-
   Cat& operator=(const Cat& copy);
 
-  void makeSound() const;
+  virtual ~Cat();
+
+  virtual void makeSound() const;
   std::string getIdea(int index) const;
   void setIdea(int index, const std::string& idea);
 

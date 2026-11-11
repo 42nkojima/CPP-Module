@@ -9,9 +9,9 @@ class ClapTrap {
   ClapTrap(const ClapTrap& copy);
   explicit ClapTrap(const std::string& name);
 
-  virtual ~ClapTrap();
-
   ClapTrap& operator=(const ClapTrap& copy);
+
+  virtual ~ClapTrap();
 
   virtual void attack(const std::string& target);
   void takeDamage(unsigned int amount);

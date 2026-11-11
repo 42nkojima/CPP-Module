@@ -4,19 +4,27 @@
 
 #include "Bureaucrat.hpp"
 
+const char* Form::GradeTooHighException::what() const throw() {
+  return "Form: grade is too high";
+}
+
+const char* Form::GradeTooLowException::what() const throw() {
+  return "Form: grade is too low";
+}
+
 Form::Form()
     : name_("default"),
       is_signed_(false),
       grade_to_sign_(kLowestGrade),
       grade_to_execute_(kLowestGrade) {}
 
-Form::Form(const std::string& name, int gradeToSign, int gradeToExecute)
+Form::Form(const std::string& name, int grade_to_sign, int grade_to_execute)
     : name_(name),
       is_signed_(false),
-      grade_to_sign_(gradeToSign),
-      grade_to_execute_(gradeToExecute) {
-  validateGrade(gradeToSign);
-  validateGrade(gradeToExecute);
+      grade_to_sign_(grade_to_sign),
+      grade_to_execute_(grade_to_execute) {
+  validateGrade(grade_to_sign);
+  validateGrade(grade_to_execute);
 }
 
 Form::Form(const Form& copy)
@@ -25,8 +33,6 @@ Form::Form(const Form& copy)
       grade_to_sign_(copy.grade_to_sign_),
       grade_to_execute_(copy.grade_to_execute_) {}
 
-Form::~Form() {}
-
 Form& Form::operator=(const Form& copy) {
   if (this != &copy) {
     is_signed_ = copy.is_signed_;
@@ -34,13 +40,7 @@ Form& Form::operator=(const Form& copy) {
   return *this;
 }
 
-const char* Form::GradeTooHighException::what() const throw() {
-  return "Form: grade is too high";
-}
-
-const char* Form::GradeTooLowException::what() const throw() {
-  return "Form: grade is too low";
-}
+Form::~Form() {}
 
 const std::string& Form::getName() const { return name_; }
 

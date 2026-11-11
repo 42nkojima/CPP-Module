@@ -20,14 +20,14 @@ FragTrap::FragTrap(const std::string& name) : ClapTrap(name) {
   std::cout << "FragTrap " << name_ << " constructor called\n";
 }
 
-FragTrap::~FragTrap() {
-  std::cout << "FragTrap " << name_ << " destructor called\n";
-}
-
 FragTrap& FragTrap::operator=(const FragTrap& copy) {
   std::cout << "FragTrap copy assignment operator called\n";
   ClapTrap::operator=(copy);
   return *this;
+}
+
+FragTrap::~FragTrap() {
+  std::cout << "FragTrap " << name_ << " destructor called\n";
 }
 
 void FragTrap::highFivesGuys() {

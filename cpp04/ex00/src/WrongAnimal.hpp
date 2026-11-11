@@ -8,9 +8,9 @@ class WrongAnimal {
   WrongAnimal();
   WrongAnimal(const WrongAnimal& copy);
 
-  virtual ~WrongAnimal();
-
   WrongAnimal& operator=(const WrongAnimal& copy);
+
+  virtual ~WrongAnimal();
 
   const std::string& getType() const;
   void makeSound() const;

@@ -8,11 +8,11 @@ class Cat : public Animal {
   Cat();
   Cat(const Cat& copy);
 
-  ~Cat();
-
   Cat& operator=(const Cat& copy);
 
-  void makeSound() const;
+  virtual ~Cat();
+
+  virtual void makeSound() const;
 };
 
 #endif

@@ -1,6 +1,6 @@
 #include "Harl.hpp"
 
-int main(void) {
+int main() {
   Harl testcases;
   testcases.complain("DEBUG");
   testcases.complain("INFO");

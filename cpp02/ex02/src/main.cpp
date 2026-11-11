@@ -44,7 +44,7 @@ static void testArithmetic() {
   std::cout << (a * b) << std::endl;  // 21
   std::cout << (a / b) << std::endl;  // 5.25
 
-  std::cout << (a / 0) << std::endl;  // error
+  std::cout << (a / Fixed(0)) << std::endl;  // error
 }
 
 static void testIncrementDecrement() {
@@ -74,7 +74,7 @@ static void testMinMax() {
   std::cout << Fixed::max(c, d) << std::endl;  // 2
 }
 
-int main(void) {
+int main() {
   testSubject();
   testComparison();
   testArithmetic();
