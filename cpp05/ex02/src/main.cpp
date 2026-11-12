@@ -26,7 +26,7 @@ static void testExecuteUnsigned() {
   const Bureaucrat boss("Boss", 1);
   const PresidentialPardonForm pardon("Arthur");
 
-  boss.executeForm(pardon);  // even the highest grade needs a signed form
+  boss.executeForm(pardon);
 }
 
 static void testShrubbery() {
@@ -42,7 +42,7 @@ static void testShrubbery() {
   sign146.signForm(form);
   sign145.signForm(form);
   exec138.executeForm(form);
-  exec137.executeForm(form);  // writes home_shrubbery
+  exec137.executeForm(form);
 }
 
 static void testRobotomy() {
@@ -58,7 +58,7 @@ static void testRobotomy() {
   sign72.signForm(form);
   exec46.executeForm(form);
   for (int i = 0; i < 4; ++i) {
-    exec45.executeForm(form);  // succeeds about half of the time
+    exec45.executeForm(form);
   }
 }
 
@@ -100,11 +100,11 @@ static void testThroughBasePointer() {
   const Bureaucrat boss("Boss", 1);
   for (int i = 0; i < kNumForms; ++i) {
     boss.signForm(*forms[i]);
-    boss.executeForm(*forms[i]);  // each form runs its own action
+    boss.executeForm(*forms[i]);
   }
 
   for (int i = 0; i < kNumForms; ++i) {
-    delete forms[i];  // the virtual destructor frees the derived part
+    delete forms[i];
   }
 }
 
@@ -117,12 +117,12 @@ static void testCopy() {
 
   const PresidentialPardonForm copied(original);
   std::cout << copied << std::endl;
-  boss.executeForm(copied);  // the copy is signed and targets Arthur
+  boss.executeForm(copied);
 
   PresidentialPardonForm assigned("Trillian");
-  assigned = original;  // target is const: only the signed status changes
+  assigned = original;
   std::cout << assigned << std::endl;
-  boss.executeForm(assigned);  // still targets Trillian
+  boss.executeForm(assigned);
 }
 
 int main() {

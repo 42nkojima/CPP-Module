@@ -43,9 +43,9 @@ static void testIncrementDecrement() {
 
   Bureaucrat bureaucrat("Taro", 42);
   std::cout << bureaucrat << std::endl;
-  bureaucrat.incrementGrade();  // 42 -> 41: a higher rank is a smaller number
+  bureaucrat.incrementGrade();
   std::cout << bureaucrat << std::endl;
-  bureaucrat.decrementGrade();  // 41 -> 42
+  bureaucrat.decrementGrade();
   std::cout << bureaucrat << std::endl;
 }
 
@@ -61,7 +61,7 @@ static void testIncrementAtHighest() {
   } catch (std::exception& e) {
     std::cout << e.what() << std::endl;
   }
-  std::cout << bureaucrat << std::endl;  // a failed call keeps the grade
+  std::cout << bureaucrat << std::endl;
 }
 
 static void testDecrementAtLowest() {
@@ -76,7 +76,7 @@ static void testDecrementAtLowest() {
   } catch (std::exception& e) {
     std::cout << e.what() << std::endl;
   }
-  std::cout << bureaucrat << std::endl;  // a failed call keeps the grade
+  std::cout << bureaucrat << std::endl;
 }
 
 static void testCatchByExactType() {
@@ -105,7 +105,7 @@ static void testCopy() {
   std::cout << copied << std::endl;
 
   Bureaucrat assigned("Carol", 100);
-  assigned = original;  // the name is const: only the grade changes
+  assigned = original;
   std::cout << assigned << std::endl;
 }
 
@@ -116,7 +116,7 @@ static void testFormValid() {
     const Form form("Contract", 50, 25);
     const Form by_default;
 
-    std::cout << form << std::endl;  // a new form is not signed
+    std::cout << form << std::endl;
     std::cout << by_default << std::endl;
   } catch (std::exception& e) {
     std::cout << "unexpected: " << e.what() << std::endl;
@@ -150,9 +150,9 @@ static void testSignForm() {
   const Bureaucrat low("Low", 51);
   const Bureaucrat edge("Edge", 50);
 
-  low.signForm(form);  // 51 is lower than the required 50
+  low.signForm(form);
   std::cout << form << std::endl;
-  edge.signForm(form);  // exactly the required grade is enough
+  edge.signForm(form);
   std::cout << form << std::endl;
 }
 
@@ -167,7 +167,7 @@ static void testBeSignedThrows() {
   } catch (Form::GradeTooLowException& e) {
     std::cout << "Form::GradeTooLowException: " << e.what() << std::endl;
   }
-  std::cout << form << std::endl;  // a failed call keeps the form unsigned
+  std::cout << form << std::endl;
 }
 
 static void testFormCopy() {
@@ -181,7 +181,7 @@ static void testFormCopy() {
   std::cout << copied << std::endl;
 
   Form assigned("Other", 1, 1);
-  assigned = original;  // name and grades are const: only is_signed_ changes
+  assigned = original;
   std::cout << assigned << std::endl;
 }
 

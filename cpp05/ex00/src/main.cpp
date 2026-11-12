@@ -42,9 +42,9 @@ static void testIncrementDecrement() {
 
   Bureaucrat bureaucrat("Taro", 42);
   std::cout << bureaucrat << std::endl;
-  bureaucrat.incrementGrade();  // 42 -> 41: a higher rank is a smaller number
+  bureaucrat.incrementGrade();
   std::cout << bureaucrat << std::endl;
-  bureaucrat.decrementGrade();  // 41 -> 42
+  bureaucrat.decrementGrade();
   std::cout << bureaucrat << std::endl;
 }
 
@@ -60,7 +60,7 @@ static void testIncrementAtHighest() {
   } catch (std::exception& e) {
     std::cout << e.what() << std::endl;
   }
-  std::cout << bureaucrat << std::endl;  // a failed call keeps the grade
+  std::cout << bureaucrat << std::endl;
 }
 
 static void testDecrementAtLowest() {
@@ -75,7 +75,7 @@ static void testDecrementAtLowest() {
   } catch (std::exception& e) {
     std::cout << e.what() << std::endl;
   }
-  std::cout << bureaucrat << std::endl;  // a failed call keeps the grade
+  std::cout << bureaucrat << std::endl;
 }
 
 static void testCatchByExactType() {
@@ -104,7 +104,7 @@ static void testCopy() {
   std::cout << copied << std::endl;
 
   Bureaucrat assigned("Carol", 100);
-  assigned = original;  // the name is const: only the grade changes
+  assigned = original;
   std::cout << assigned << std::endl;
 }
 
