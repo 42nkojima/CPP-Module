@@ -1,6 +1,7 @@
 #include "ScalarConverter.hpp"
 
 #include <cctype>
+#include <cmath>
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
@@ -175,6 +176,38 @@ static ScalarValues cast(const Literal& literal) {
   return values;
 }
 
+static std::string formatReal(double value, int digits) {
+  if (value != value) {
+    return "nan";
+  }
+  if (value == std::numeric_limits<double>::infinity()) {
+    return "+inf";
+  }
+  if (value == -std::numeric_limits<double>::infinity()) {
+    return "-inf";
+  }
+
+  int exponent = 0;
+  if (value != 0.0) {
+    exponent = static_cast<int>(std::floor(std::log10(std::fabs(value))));
+  }
+  int decimals = digits - 1 - exponent;
+  if (decimals < 1) {
+    decimals = 1;
+  }
+
+  std::ostringstream oss;
+  oss << std::fixed << std::setprecision(decimals) << value;
+
+  std::string text = oss.str();
+  std::string::size_type last = text.find_last_not_of('0');
+  if (text[last] == '.') {
+    ++last;
+  }
+  text.erase(last + 1);
+  return text;
+}
+
 static std::string format(const ScalarValues& values) {
   std::ostringstream oss;
 
@@ -196,16 +229,13 @@ static std::string format(const ScalarValues& values) {
   }
   oss << "\n";
 
-  oss << std::fixed << std::setprecision(1);
-
   oss << "float: ";
   if (!values.hasFloat()) {
     oss << "impossible";
   } else {
-    if (values.getFloat() == std::numeric_limits<float>::infinity()) {
-      oss << "+";
-    }
-    oss << values.getFloat() << "f";
+    oss << formatReal(static_cast<double>(values.getFloat()),
+                      std::numeric_limits<float>::digits10)
+        << "f";
   }
   oss << "\n";
 
@@ -213,10 +243,8 @@ static std::string format(const ScalarValues& values) {
   if (!values.hasDouble()) {
     oss << "impossible";
   } else {
-    if (values.getDouble() == std::numeric_limits<double>::infinity()) {
-      oss << "+";
-    }
-    oss << values.getDouble();
+    oss << formatReal(values.getDouble(),
+                      std::numeric_limits<double>::digits10);
   }
   oss << "\n";
 

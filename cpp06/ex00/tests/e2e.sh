@@ -124,9 +124,11 @@ check -2147483649 impossible impossible -2147483648.0f -2147483649.0
 # =====
 
 check 0.0f  'Non displayable' 0  0.0f  0.0
-check 4.2f  'Non displayable' 4  4.2f  4.2
-check -4.2f 'Non displayable' -4 -4.2f -4.2
 check 97.0f "'a'"             97 97.0f 97.0
+
+# float は 4.2 を正確に表せない。double の行には、float が実際に持っている値が出る。
+check 4.2f  'Non displayable' 4  4.2f  4.19999980926514
+check -4.2f 'Non displayable' -4 -4.2f -4.19999980926514
 
 # 小数点の片側に数字がなくても受け付ける。
 check 4.f 'Non displayable' 4 4.0f 4.0
@@ -171,6 +173,26 @@ HUGE=$(printf '%0400d' 0 | tr 0 9)
 INVALID=$(lines impossible impossible impossible impossible)
 report '<9 を 400 桁>'      "$INVALID" "$("$BIN" "$HUGE" 2>&1)"
 report '<9 を 400 桁 + .0f>' "$INVALID" "$("$BIN" "$HUGE.0f" 2>&1)"
+
+# ==========
+# 小数の桁数
+# ==========
+
+# float は有効数字 6 桁、double は 15 桁まで出す。入力した桁は丸めない。
+check 42.25 "'*'"             42 42.25f 42.25
+check 4.25f 'Non displayable' 4  4.25f  4.25
+check 1.99  'Non displayable' 1  1.99f  1.99
+check 0.04  'Non displayable' 0  0.04f  0.04
+check -0.04 'Non displayable' 0  -0.04f -0.04
+
+# 小さい値も 0.0 にしない。
+check 0.00001 'Non displayable' 0 0.00001f 0.00001
+
+# float の 6 桁を超える分は、float の行だけ丸められる。
+check 3.14159265358979 'Non displayable' 3 3.14159f 3.14159265358979
+
+# 整数の値には .0 を付ける。
+check 100.0 "'d'" 100 100.0f 100.0
 
 # ======================
 # 受け付けない入力
