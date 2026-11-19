@@ -198,6 +198,9 @@ static std::string format(const ScalarValues& values) {
   if (!values.hasFloat()) {
     oss << "impossible";
   } else {
+    if (values.getFloat() == std::numeric_limits<float>::infinity()) {
+      oss << "+";
+    }
     oss << values.getFloat() << "f";
   }
   oss << "\n";
@@ -206,6 +209,9 @@ static std::string format(const ScalarValues& values) {
   if (!values.hasDouble()) {
     oss << "impossible";
   } else {
+    if (values.getDouble() == std::numeric_limits<double>::infinity()) {
+      oss << "+";
+    }
     oss << values.getDouble();
   }
   oss << "\n";
