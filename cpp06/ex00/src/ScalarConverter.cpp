@@ -80,20 +80,7 @@ static Literal parsePseudoLiteral(const std::string& str) {
   return Literal();
 }
 
-static Literal parse(const std::string& str) {
-  if (str.empty()) {
-    return Literal();
-  }
-
-  const Literal pseudo = parsePseudoLiteral(str);
-  if (pseudo.getType() != Literal::kInvalid) {
-    return pseudo;
-  }
-
-  if (str.length() == 1 && !std::isdigit(static_cast<unsigned char>(str[0]))) {
-    return Literal(str[0]);
-  }
-
+static Literal parseNumber(const std::string& str) {
   const bool is_integer = isIntegerForm(str);
   const bool is_float = str[str.length() - 1] == 'f' &&
                         isDecimalForm(str.substr(0, str.length() - 1));
@@ -114,6 +101,23 @@ static Literal parse(const std::string& str) {
     return Literal(static_cast<float>(value));
   }
   return Literal(value);
+}
+
+static Literal parse(const std::string& str) {
+  if (str.empty()) {
+    return Literal();
+  }
+
+  const Literal pseudo = parsePseudoLiteral(str);
+  if (pseudo.getType() != Literal::kInvalid) {
+    return pseudo;
+  }
+
+  if (str.length() == 1 && !std::isdigit(static_cast<unsigned char>(str[0]))) {
+    return Literal(str[0]);
+  }
+
+  return parseNumber(str);
 }
 
 static ScalarValues cast(const Literal& literal) {
