@@ -58,9 +58,36 @@ static bool isDecimalForm(const std::string& str) {
   return dots == 1 && digits > 0;
 }
 
+static Literal parsePseudoLiteral(const std::string& str) {
+  if (str == "nanf") {
+    return Literal(std::numeric_limits<float>::quiet_NaN());
+  }
+  if (str == "+inff") {
+    return Literal(std::numeric_limits<float>::infinity());
+  }
+  if (str == "-inff") {
+    return Literal(-std::numeric_limits<float>::infinity());
+  }
+  if (str == "nan") {
+    return Literal(std::numeric_limits<double>::quiet_NaN());
+  }
+  if (str == "+inf") {
+    return Literal(std::numeric_limits<double>::infinity());
+  }
+  if (str == "-inf") {
+    return Literal(-std::numeric_limits<double>::infinity());
+  }
+  return Literal();
+}
+
 static Literal parse(const std::string& str) {
   if (str.empty()) {
     return Literal();
+  }
+
+  const Literal pseudo = parsePseudoLiteral(str);
+  if (pseudo.getType() != Literal::kInvalid) {
+    return pseudo;
   }
 
   if (str.length() == 1 && !std::isdigit(static_cast<unsigned char>(str[0]))) {
