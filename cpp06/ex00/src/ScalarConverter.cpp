@@ -1,6 +1,7 @@
 #include "ScalarConverter.hpp"
 
 #include <cctype>
+#include <cstdlib>
 #include <iomanip>
 #include <iostream>
 #include <limits>
@@ -26,6 +27,66 @@ static bool fitsInFloat(double value) {
   }
   return value >= -std::numeric_limits<float>::max() &&
          value <= std::numeric_limits<float>::max();
+}
+
+static bool isIntegerForm(const std::string& str) {
+  std::string::size_type i = (str[0] == '+' || str[0] == '-') ? 1 : 0;
+  if (i == str.length()) {
+    return false;
+  }
+  for (; i < str.length(); ++i) {
+    if (!std::isdigit(static_cast<unsigned char>(str[i]))) {
+      return false;
+    }
+  }
+  return true;
+}
+
+static bool isDecimalForm(const std::string& str) {
+  std::string::size_type i = (str[0] == '+' || str[0] == '-') ? 1 : 0;
+  int digits = 0;
+  int dots = 0;
+  for (; i < str.length(); ++i) {
+    if (str[i] == '.') {
+      ++dots;
+    } else if (std::isdigit(static_cast<unsigned char>(str[i]))) {
+      ++digits;
+    } else {
+      return false;
+    }
+  }
+  return dots == 1 && digits > 0;
+}
+
+static Literal parse(const std::string& str) {
+  if (str.empty()) {
+    return Literal();
+  }
+
+  if (str.length() == 1 && !std::isdigit(static_cast<unsigned char>(str[0]))) {
+    return Literal(str[0]);
+  }
+
+  const bool is_integer = isIntegerForm(str);
+  const bool is_float = str[str.length() - 1] == 'f' &&
+                        isDecimalForm(str.substr(0, str.length() - 1));
+  const bool is_double = isDecimalForm(str);
+  if (!is_integer && !is_float && !is_double) {
+    return Literal();
+  }
+
+  const double value = std::strtod(str.c_str(), NULL);
+  const double infinity = std::numeric_limits<double>::infinity();
+  if (value == infinity || value == -infinity) {
+    return Literal();
+  }
+  if (is_integer && fitsInInt(value)) {
+    return Literal(static_cast<int>(value));
+  }
+  if (is_float && fitsInFloat(value)) {
+    return Literal(static_cast<float>(value));
+  }
+  return Literal(value);
 }
 
 static ScalarValues cast(const Literal& literal) {
@@ -126,8 +187,7 @@ static std::string format(const ScalarValues& values) {
 }
 
 void ScalarConverter::convert(const std::string& literal) {
-  (void)literal;
-  std::cout << format(cast(Literal('a')));
+  std::cout << format(cast(parse(literal)));
 }
 
 ScalarConverter::ScalarConverter() {}
